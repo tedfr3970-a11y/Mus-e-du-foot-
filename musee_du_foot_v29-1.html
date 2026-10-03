@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musée du Foot</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#07111f;color:#fff}
+header{padding:28px 18px;text-align:center;background:linear-gradient(135deg,#0d2a4a,#07111f)}
+header h1{margin:0;font-size:34px}
+header p{margin:8px 0 0;color:#b9c9dc}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#0b1b2d;position:sticky;top:0;z-index:5}
+nav button{border:0;border-radius:10px;padding:12px 16px;background:#152b43;color:#fff;font-weight:bold;white-space:nowrap}
+nav button.active{background:#1877f2}
+main{max-width:1100px;margin:auto;padding:20px}
+.page{display:none}
+.page.active{display:block}
+.hero{padding:28px;border-radius:18px;background:linear-gradient(135deg,#12385d,#102033);margin-bottom:20px}
+.hero h2{margin-top:0;font-size:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#102238;border:1px solid #1d3b59;border-radius:16px;padding:20px;min-height:145px}
+.card h3{margin-top:0}
+.card button{margin-top:10px;border:0;border-radius:9px;padding:10px 13px;background:#1877f2;color:white;font-weight:bold}
+.section-title{margin:25px 0 12px}
+.list{display:grid;gap:10px}
+.item{background:#102238;padding:15px;border-radius:12px;border-left:4px solid #1877f2}.clickable{cursor:pointer;transition:.2s}.clickable:hover{transform:translateX(4px);background:#15304c}.backBtn{margin-top:18px;border:0;border-radius:9px;padding:11px 15px;background:#1877f2;color:white;font-weight:bold}
+footer{text-align:center;color:#8295aa;padding:30px}
+.small{color:#a9bbcf}
+.itemBtn{display:block;width:100%;text-align:left;border:0;cursor:pointer;font:inherit;color:inherit;}
+
+.matchDetail{background:#102238;border:1px solid #1d3b5c;border-radius:16px;padding:16px;margin:12px 0}.matchDetail h3{margin:0 0 10px}.matchDetail p{margin:7px 0}
+</style>
+</head>
+<body>
+<header>
+<h1>🏛️ Musée du Foot</h1>
+<p>L'histoire du football, ses compétitions, ses clubs et ses légendes.</p>
+</header>
+
+<nav>
+<button class="active" onclick="showPage('accueil',this)">🏠 Accueil</button>
+<button onclick="showPage('competitions',this)">🏆 Compétitions</button>
+<button onclick="showPage('championnats',this)">🏟️ Championnats</button>
+<button onclick="showPage('clubs',this)">⚽ Clubs</button>
+<button onclick="showPage('nations',this)">🌍 Équipes nationales</button>
+<button onclick="showPage('palmares',this)">🏅 Palmarès</button>
+<button onclick="showPage('histoire',this)">📜 Histoire</button>
+</nav>
+
+<main>
+<section id="accueil" class="page active">
+<div class="hero">
+<h2>Bienvenue au Musée du Foot</h2>
+<p>Explore les grandes compétitions, les clubs historiques, les équipes nationales et les moments qui ont marqué le football.</p>
+</div>
+<div class="grid">
+<div class="card"><h3>🏆 Compétitions</h3><p class="small">Les grandes compétitions internationales et européennes.</p><button onclick="showPage('competitions')">Explorer</button></div>
+<div class="card"><h3>⚽ Clubs</h3><p class="small">Découvre les grands clubs et leur histoire.</p><button onclick="showPage('clubs')">Explorer</button></div>
+<div class="card"><h3>🌍 Équipes nationales</h3><p class="small">Les sélections et leurs grandes compétitions.</p><button onclick="showPage('nations')">Explorer</button></div>
+<div class="card"><h3>🏅 Palmarès</h3><p class="small">Les titres remportés au fil des années.</p><button onclick="showPage('palmares')">Explorer</button></div>
+<div class="card"><h3>🏟️ Championnats</h3><p class="small">Les grands championnats nationaux et leurs champions.</p><button onclick="showPage('championnats')">Explorer</button></div>
+</div>
+</section>
+
+<section id="competitions" class="page">
+<h2 class="section-title">🏆 Compétitions</h2>
+<div class="grid">
+<div class="card"><h3>🏆 Ligue des Champions</h3><p>Les vainqueurs et les détails de toutes les finales de la plus grande compétition européenne des clubs.</p><button onclick="showChampions()">Explorer</button></div>
+<div class="card"><h3>🌍 Ligue des champions africaine</h3><p>La grande compétition des clubs africains.</p><button onclick="showComp('caf')">Explorer</button></div>
+<div class="card"><h3>🌏 Ligue des champions asiatique</h3><p>La grande compétition des clubs asiatiques.</p><button onclick="showComp('acl')">Explorer</button></div>
+<div class="card"><h3>🥈 Ligue Europa</h3><p>Les vainqueurs et l'histoire de la deuxième grande compétition européenne.</p><button onclick="showComp('europa')">Explorer</button></div>
+<div class="card"><h3>🥉 Ligue Conférence</h3><p>L'histoire de la Conference League.</p><button onclick="showComp('conference')">Explorer</button></div>
+<div class="card"><h3>🌍 Coupe du Monde</h3><p>Les champions du monde et les finales historiques.</p><button onclick="showComp('mondial')">Explorer</button></div>
+<div class="card"><h3>🇪🇺 Euro</h3><p>Les champions d'Europe des nations.</p><button onclick="showComp('euro')">Explorer</button></div>
+<div class="card"><h3>🌎 Copa América</h3><p>Les champions d'Amérique du Sud.</p><button onclick="showComp('copa')">Explorer</button></div>
+<div class="card"><h3>🏆 Copa Libertadores</h3><p>La grande compétition des clubs sud-américains.</p><button onclick="showComp('libertadores')">Explorer</button></div>
+<div class="card"><h3>🌍 CAN</h3><p>La Coupe d'Afrique des Nations.</p><button onclick="showComp('can')">Explorer</button></div>
+<div class="card"><h3>🌐 Ligue des nations</h3><p>La compétition européenne des sélections.</p><button onclick="showComp('nationsleague')">Explorer</button></div>
+</div>
+</section>
+
+<section id="champions" class="page">
+<h2 class="section-title">🏆 Ligue des Champions</h2>
+<div class="hero">
+<h2>Palmarès de la Ligue des Champions</h2>
+<p>Tous les vainqueurs depuis la première édition de 1955-56. Appuie sur une saison pour voir le résultat, l’adversaire et le stade de la finale.</p>
+</div>
+<div class="list">
+<div class="item clickable" onclick="showFinal('2025-26')"><b>2025-26 :</b> Paris Saint-Germain</div>
+<div class="item clickable" onclick="showFinal('2024-25')"><b>2024-25 :</b> Paris Saint-Germain</div>
+<div class="item clickable" onclick="showFinal('2023-24')"><b>2023-24 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2022-23')"><b>2022-23 :</b> Manchester City</div>
+<div class="item clickable" onclick="showFinal('2021-22')"><b>2021-22 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2020-21')"><b>2020-21 :</b> Chelsea</div>
+<div class="item clickable" onclick="showFinal('2019-20')"><b>2019-20 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('2018-19')"><b>2018-19 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('2017-18')"><b>2017-18 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2016-17')"><b>2016-17 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2015-16')"><b>2015-16 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2014-15')"><b>2014-15 :</b> FC Barcelona</div>
+<div class="item clickable" onclick="showFinal('2013-14')"><b>2013-14 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2012-13')"><b>2012-13 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('2011-12')"><b>2011-12 :</b> Chelsea</div>
+<div class="item clickable" onclick="showFinal('2010-11')"><b>2010-11 :</b> FC Barcelona</div>
+<div class="item clickable" onclick="showFinal('2009-10')"><b>2009-10 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal('2008-09')"><b>2008-09 :</b> FC Barcelona</div>
+<div class="item clickable" onclick="showFinal('2007-08')"><b>2007-08 :</b> Manchester United</div>
+<div class="item clickable" onclick="showFinal('2006-07')"><b>2006-07 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('2005-06')"><b>2005-06 :</b> FC Barcelona</div>
+<div class="item clickable" onclick="showFinal('2004-05')"><b>2004-05 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('2003-04')"><b>2003-04 :</b> FC Porto</div>
+<div class="item clickable" onclick="showFinal('2002-03')"><b>2002-03 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('2001-02')"><b>2001-02 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('2000-01')"><b>2000-01 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('1999-00')"><b>1999-00 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1998-99')"><b>1998-99 :</b> Manchester United</div>
+<div class="item clickable" onclick="showFinal('1997-98')"><b>1997-98 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1996-97')"><b>1996-97 :</b> Borussia Dortmund</div>
+<div class="item clickable" onclick="showFinal('1995-96')"><b>1995-96 :</b> Juventus</div>
+<div class="item clickable" onclick="showFinal('1994-95')"><b>1994-95 :</b> Ajax</div>
+<div class="item clickable" onclick="showFinal('1993-94')"><b>1993-94 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('1992-93')"><b>1992-93 :</b> Olympique de Marseille</div>
+<div class="item clickable" onclick="showFinal('1991-92')"><b>1991-92 :</b> FC Barcelona</div>
+<div class="item clickable" onclick="showFinal('1990-91')"><b>1990-91 :</b> Crvena zvezda</div>
+<div class="item clickable" onclick="showFinal('1989-90')"><b>1989-90 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('1988-89')"><b>1988-89 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('1987-88')"><b>1987-88 :</b> PSV Eindhoven</div>
+<div class="item clickable" onclick="showFinal('1986-87')"><b>1986-87 :</b> FC Porto</div>
+<div class="item clickable" onclick="showFinal('1985-86')"><b>1985-86 :</b> Steaua București</div>
+<div class="item clickable" onclick="showFinal('1984-85')"><b>1984-85 :</b> Juventus</div>
+<div class="item clickable" onclick="showFinal('1983-84')"><b>1983-84 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('1982-83')"><b>1982-83 :</b> Hambourg</div>
+<div class="item clickable" onclick="showFinal('1981-82')"><b>1981-82 :</b> Aston Villa</div>
+<div class="item clickable" onclick="showFinal('1980-81')"><b>1980-81 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('1979-80')"><b>1979-80 :</b> Nottingham Forest</div>
+<div class="item clickable" onclick="showFinal('1978-79')"><b>1978-79 :</b> Nottingham Forest</div>
+<div class="item clickable" onclick="showFinal('1977-78')"><b>1977-78 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('1976-77')"><b>1976-77 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal('1975-76')"><b>1975-76 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('1974-75')"><b>1974-75 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('1973-74')"><b>1973-74 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal('1972-73')"><b>1972-73 :</b> Ajax</div>
+<div class="item clickable" onclick="showFinal('1971-72')"><b>1971-72 :</b> Ajax</div>
+<div class="item clickable" onclick="showFinal('1970-71')"><b>1970-71 :</b> Ajax</div>
+<div class="item clickable" onclick="showFinal('1969-70')"><b>1969-70 :</b> Feyenoord</div>
+<div class="item clickable" onclick="showFinal('1968-69')"><b>1968-69 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('1967-68')"><b>1967-68 :</b> Manchester United</div>
+<div class="item clickable" onclick="showFinal('1966-67')"><b>1966-67 :</b> Celtic</div>
+<div class="item clickable" onclick="showFinal('1965-66')"><b>1965-66 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1964-65')"><b>1964-65 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal('1963-64')"><b>1963-64 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal('1962-63')"><b>1962-63 :</b> AC Milan</div>
+<div class="item clickable" onclick="showFinal('1961-62')"><b>1961-62 :</b> Benfica</div>
+<div class="item clickable" onclick="showFinal('1960-61')"><b>1960-61 :</b> Benfica</div>
+<div class="item clickable" onclick="showFinal('1959-60')"><b>1959-60 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1958-59')"><b>1958-59 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1957-58')"><b>1957-58 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1956-57')"><b>1956-57 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal('1955-56')"><b>1955-56 :</b> Real Madrid</div>
+</div>
+<button onclick="backToCompetitions()" style="margin-top:18px;border:0;border-radius:9px;padding:11px 15px;background:#1877f2;color:white;font-weight:bold">← Retour aux compétitions</button>
+</section>
+
+<section id="finalDetail" class="page">
+<h2 class="section-title" id="finalTitle">🏆 Finale</h2>
+<div class="hero" id="finalBox"></div>
+<button onclick="backFromChampionsFinal()" style="border:0;border-radius:9px;padding:11px 15px;background:#1877f2;color:white;font-weight:bold">← Retour à la Ligue des Champions</button>
+</section>
+
+<section id="europa" class="page">
+<h2 class="section-title">🥈 Ligue Europa</h2>
+<div class="hero"><h2>Palmarès de la Ligue Europa</h2><p>Tous les vainqueurs depuis 1971-72. Clique sur une saison pour voir l’adversaire, le score, la date et le stade de la finale.</p></div>
+<div class="list">
+<div class="item clickable" onclick="showFinal2('europa','2025-26')"><b>2025-26 :</b> Aston Villa</div>
+<div class="item clickable" onclick="showFinal2('europa','2024-25')"><b>2024-25 :</b> Tottenham</div>
+<div class="item clickable" onclick="showFinal2('europa','2023-24')"><b>2023-24 :</b> Atalanta</div>
+<div class="item clickable" onclick="showFinal2('europa','2022-23')"><b>2022-23 :</b> Séville</div>
+<div class="item clickable" onclick="showFinal2('europa','2021-22')"><b>2021-22 :</b> Eintracht Francfort</div>
+<div class="item clickable" onclick="showFinal2('europa','2020-21')"><b>2020-21 :</b> Villarreal</div>
+<div class="item clickable" onclick="showFinal2('europa','2019-20')"><b>2019-20 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2018-19')"><b>2018-19 :</b> Chelsea</div>
+<div class="item clickable" onclick="showFinal2('europa','2017-18')"><b>2017-18 :</b> Atlético Madrid</div>
+<div class="item clickable" onclick="showFinal2('europa','2016-17')"><b>2016-17 :</b> Manchester United</div>
+<div class="item clickable" onclick="showFinal2('europa','2015-16')"><b>2015-16 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2014-15')"><b>2014-15 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2013-14')"><b>2013-14 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2012-13')"><b>2012-13 :</b> Chelsea</div>
+<div class="item clickable" onclick="showFinal2('europa','2011-12')"><b>2011-12 :</b> Atlético Madrid</div>
+<div class="item clickable" onclick="showFinal2('europa','2010-11')"><b>2010-11 :</b> Porto</div>
+<div class="item clickable" onclick="showFinal2('europa','2009-10')"><b>2009-10 :</b> Atlético Madrid</div>
+<div class="item clickable" onclick="showFinal2('europa','2008-09')"><b>2008-09 :</b> Shakhtar Donetsk</div>
+<div class="item clickable" onclick="showFinal2('europa','2007-08')"><b>2007-08 :</b> Zenit Saint Petersburg</div>
+<div class="item clickable" onclick="showFinal2('europa','2006-07')"><b>2006-07 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2005-06')"><b>2005-06 :</b> Sevilla</div>
+<div class="item clickable" onclick="showFinal2('europa','2004-05')"><b>2004-05 :</b> CSKA Moscow</div>
+<div class="item clickable" onclick="showFinal2('europa','2003-04')"><b>2003-04 :</b> Valencia</div>
+<div class="item clickable" onclick="showFinal2('europa','2002-03')"><b>2002-03 :</b> Porto</div>
+<div class="item clickable" onclick="showFinal2('europa','2001-02')"><b>2001-02 :</b> Feyenoord</div>
+<div class="item clickable" onclick="showFinal2('europa','2000-01')"><b>2000-01 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal2('europa','1999-2000')"><b>1999-2000 :</b> Galatasaray</div>
+<div class="item clickable" onclick="showFinal2('europa','1998-99')"><b>1998-99 :</b> Parma</div>
+<div class="item clickable" onclick="showFinal2('europa','1997-98')"><b>1997-98 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal2('europa','1996-97')"><b>1996-97 :</b> Schalke 04</div>
+<div class="item clickable" onclick="showFinal2('europa','1995-96')"><b>1995-96 :</b> Bayern Munich</div>
+<div class="item clickable" onclick="showFinal2('europa','1994-95')"><b>1994-95 :</b> Parma</div>
+<div class="item clickable" onclick="showFinal2('europa','1993-94')"><b>1993-94 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal2('europa','1992-93')"><b>1992-93 :</b> Juventus</div>
+<div class="item clickable" onclick="showFinal2('europa','1991-92')"><b>1991-92 :</b> Ajax</div>
+<div class="item clickable" onclick="showFinal2('europa','1990-91')"><b>1990-91 :</b> Inter Milan</div>
+<div class="item clickable" onclick="showFinal2('europa','1989-90')"><b>1989-90 :</b> Juventus</div>
+<div class="item clickable" onclick="showFinal2('europa','1988-89')"><b>1988-89 :</b> Napoli</div>
+<div class="item clickable" onclick="showFinal2('europa','1987-88')"><b>1987-88 :</b> Bayer Leverkusen</div>
+<div class="item clickable" onclick="showFinal2('europa','1986-87')"><b>1986-87 :</b> IFK Göteborg</div>
+<div class="item clickable" onclick="showFinal2('europa','1985-86')"><b>1985-86 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal2('europa','1984-85')"><b>1984-85 :</b> Real Madrid</div>
+<div class="item clickable" onclick="showFinal2('europa','1983-84')"><b>1983-84 :</b> Tottenham Hotspur</div>
+<div class="item clickable" onclick="showFinal2('europa','1982-83')"><b>1982-83 :</b> Anderlecht</div>
+<div class="item clickable" onclick="showFinal2('europa','1981-82')"><b>1981-82 :</b> IFK Göteborg</div>
+<div class="item clickable" onclick="showFinal2('europa','1980-81')"><b>1980-81 :</b> Ipswich Town</div>
+<div class="item clickable" onclick="showFinal2('europa','1979-80')"><b>1979-80 :</b> Eintracht Francfort</div>
+<div class="item clickable" onclick="showFinal2('europa','1978-79')"><b>1978-79 :</b> Borussia Mönchengladbach</div>
+<div class="item clickable" onclick="showFinal2('europa','1977-78')"><b>1977-78 :</b> PSV Eindhoven</div>
+<div class="item clickable" onclick="showFinal2('europa','1976-77')"><b>1976-77 :</b> Juventus</div>
+<div class="item clickable" onclick="showFinal2('europa','1975-76')"><b>1975-76 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal2('europa','1974-75')"><b>1974-75 :</b> Borussia Mönchengladbach</div>
+<div class="item clickable" onclick="showFinal2('europa','1973-74')"><b>1973-74 :</b> Feyenoord</div>
+<div class="item clickable" onclick="showFinal2('europa','1972-73')"><b>1972-73 :</b> Liverpool</div>
+<div class="item clickable" onclick="showFinal2('europa','1971-72')"><b>1971-72 :</b> Tottenham Hotspur</div>
+</div>
+<button onclick="showPage('competitions')" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+<section id="conference" class="page">
+<h2 class="section-title">🥉 Ligue Conférence</h2>
+<div class="hero"><h2>Palmarès de la Conference League</h2><p>Tous les vainqueurs depuis 2021-22. Clique sur un vainqueur pour voir le résultat, l’adversaire, la date et le stade de la finale.</p></div>
+<div class="list">
+<div class="item clickable" onclick="showFinal2('conference','2025-26')"><b>2025-26 :</b> Crystal Palace</div>
+<div class="item clickable" onclick="showFinal2('conference','2024-25')"><b>2024-25 :</b> Chelsea</div>
+<div class="item clickable" onclick="showFinal2('conference','2023-24')"><b>2023-24 :</b> Olympiacos</div>
+<div class="item clickable" onclick="showFinal2('conference','2022-23')"><b>2022-23 :</b> West Ham United</div>
+<div class="item clickable" onclick="showFinal2('conference','2021-22')"><b>2021-22 :</b> AS Roma</div>
+</div>
+<button onclick="backToCompetitions()" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+<section id="mondial" class="page">
+<h2 class="section-title">🌍 Coupe du Monde</h2>
+<div class="hero"><h2>Palmarès de la Coupe du Monde</h2><p>Clique sur un champion pour voir les détails de la finale.</p></div>
+<div class="list">
+<div class="item clickable" onclick="showFinal2('mondial','2026')"><b>2026 :</b> Espagne</div>
+<div class="item clickable" onclick="showFinal2('mondial','2022')"><b>2022 :</b> Argentine</div>
+<div class="item clickable" onclick="showFinal2('mondial','2018')"><b>2018 :</b> France</div>
+<div class="item clickable" onclick="showFinal2('mondial','2014')"><b>2014 :</b> Allemagne</div>
+<div class="item clickable" onclick="showFinal2('mondial','2010')"><b>2010 :</b> Espagne</div>
+</div>
+<button onclick="showPage('competitions')" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+<section id="euro" class="page">
+<h2 class="section-title">🇪🇺 Euro</h2>
+<div class="hero"><h2>Palmarès de l'Euro</h2><p>Clique sur un champion pour voir les détails de la finale.</p></div>
+<div class="list">
+<div class="item clickable" onclick="showFinal2('euro','2024')"><b>2024 :</b> Espagne</div>
+<div class="item clickable" onclick="showFinal2('euro','2020')"><b>2020 :</b> Italie</div>
+<div class="item clickable" onclick="showFinal2('euro','2016')"><b>2016 :</b> Portugal</div>
+<div class="item clickable" onclick="showFinal2('euro','2012')"><b>2012 :</b> Espagne</div>
+<div class="item clickable" onclick="showFinal2('euro','2008')"><b>2008 :</b> Espagne</div>
+</div>
+<button onclick="showPage('competitions')" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+<section id="compDetail" class="page">
+<h2 class="section-title" id="compDetailTitle">🏆 Finale</h2>
+<div class="hero" id="compDetailBox"></div>
+<button onclick="historyBackComp()" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+<section id="moreComps" class="page">
+<h2 class="section-title">🌍 Autres grandes compétitions</h2>
+<div class="hero"><h2 id="moreCompTitle">Compétition</h2><p id="moreCompIntro">Palmarès et histoire.</p></div>
+<div class="list" id="moreCompList"></div>
+<button onclick="showPage('competitions')" class="backBtn">← Retour aux compétitions</button>
+</section>
+
+
+<section id="championnats" class="page">
+<h2 class="section-title">🏟️ Championnats nationaux</h2>
+<div class="hero">
+<h2>Les grands championnats</h2>
+<p>Les champions de chaque championnat, saison après saison.</p>
+</div>
+<div class="grid">
+<div class="card"><h3>🇫🇷 Ligue 1</h3><p>Les champions de France.</p><button onclick="showLeague('ligue1')">Explorer</button></div>
+<div class="card"><h3>🏴 Premier League</h3><p>Les champions d'Angleterre.</p><button onclick="showLeague('premierleague')">Explorer</button></div>
+<div class="card"><h3>🇪🇸 Liga</h3><p>Les champions d'Espagne.</p><button onclick="showLeague('liga')">Explorer</button></div>
+<div class="card"><h3>🇮🇹 Serie A</h3><p>Les champions d'Italie.</p><button onclick="showLeague('seriea')">Explorer</button></div>
+<div class="card"><h3>🇩🇪 Bundesliga</h3><p>Les champions d'Allemagne.</p><button onclick="showLeague('bundesliga')">Explorer</button></div>
+</div>
+</section>
+
+<section id="clubs" class="page">
+<h2 class="section-title">⚽ Clubs</h2>
+<div class="grid">
+<div class="card"><h3>🇪🇸 Real Madrid</h3><p>Palmarès, grandes finales et histoire du club.</p></div>
+<div class="card"><h3>🇪🇸 FC Barcelone</h3><p>Palmarès et histoire du Barça.</p></div>
+<div class="card"><h3>🇬🇧 Manchester United</h3><p>Palmarès et grandes périodes du club.</p></div>
+<div class="card"><h3>🇬🇧 Liverpool</h3><p>Palmarès et histoire européenne.</p></div>
+<div class="card"><h3>🇫🇷 PSG</h3><p>Histoire et palmarès du Paris Saint-Germain.</p></div>
+<div class="card"><h3>🇮🇹 AC Milan</h3><p>Un grand club historique du football européen.</p></div>
+</div>
+</section>
+
+<section id="nations" class="page">
+<h2 class="section-title">🌍 Équipes nationales</h2>
+<div class="grid">
+<div class="card"><h3>🇫🇷 France</h3><p>Coupe du Monde, Euro et histoire des Bleus.</p></div>
+<div class="card"><h3>🇧🇷 Brésil</h3><p>L'une des sélections les plus titrées du monde.</p></div>
+<div class="card"><h3>🇩🇪 Allemagne</h3><p>Palmarès et histoire de la Mannschaft.</p></div>
+<div class="card"><h3>🇮🇹 Italie</h3><p>Les grandes victoires et générations italiennes.</p></div>
+<div class="card"><h3>🇪🇸 Espagne</h3><p>Les grandes générations espagnoles.</p></div>
+</div>
+</section>
+
+<section id="palmares" class="page">
+<h2 class="section-title">🏅 Palmarès</h2>
+<div class="list">
+<div class="item"><b>Clubs :</b> titres européens, nationaux et internationaux.</div>
+<div class="item"><b>Nations :</b> Coupes du Monde, Euros et autres compétitions.</div>
+<div class="item"><b>Records :</b> joueurs, clubs et sélections ayant marqué l'histoire.</div>
+</div>
+</section>
+
+<section id="histoire" class="page">
+<h2 class="section-title">📜 Histoire du football</h2>
+<div class="hero">
+<h2>Une histoire à construire</h2>
+<p>Cette partie présentera les grandes périodes du football, les évolutions des compétitions, des clubs, des maillots, des logos et des règles.</p>
+</div>
+<div class="grid">
+<div class="card"><h3>⚽ Les débuts</h3><p>Les origines et les premières grandes compétitions.</p></div>
+<div class="card"><h3>🏆 L'évolution des coupes</h3><p>Comment les grandes compétitions ont changé au fil du temps.</p></div>
+<div class="card"><h3>👕 Maillots & logos</h3><p>L'évolution visuelle des clubs et sélections.</p></div>
+</div>
+</section>
+</main>
+
+<footer>Musée du Foot — Version 2 🏛️⚽</footer>
+
+<script>
+function showChampions(){
+ showPage('champions');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+}
+
+const finals = {
+ "1955-56": {
+  "winner": "Real Madrid",
+  "loser": "Stade de Reims",
+  "score": "4-3",
+  "date": "13 juin 1956",
+  "stadium": "Parc des Princes, Paris",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1956-57": {
+  "winner": "Real Madrid",
+  "loser": "Fiorentina",
+  "score": "2-0",
+  "date": "30 mai 1957",
+  "stadium": "Santiago Bernabéu, Madrid",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1957-58": {
+  "winner": "Real Madrid",
+  "loser": "AC Milan",
+  "score": "3-2 a.p.",
+  "date": "28 mai 1958",
+  "stadium": "Heysel Stadium, Bruxelles",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1958-59": {
+  "winner": "Real Madrid",
+  "loser": "Stade de Reims",
+  "score": "2-0",
+  "date": "3 juin 1959",
+  "stadium": "Neckarstadion, Stuttgart",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1959-60": {
+  "winner": "Real Madrid",
+  "loser": "Eintracht Francfort",
+  "score": "7-3",
+  "date": "18 mai 1960",
+  "stadium": "Hampden Park, Glasgow",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1960-61": {
+  "winner": "Benfica",
+  "loser": "FC Barcelona",
+  "score": "3-2",
+  "date": "31 mai 1961",
+  "stadium": "Wankdorf Stadium, Berne",
+  "detail": "Finale remportée par Benfica."
+ },
+ "1961-62": {
+  "winner": "Benfica",
+  "loser": "Real Madrid",
+  "score": "5-3",
+  "date": "2 mai 1962",
+  "stadium": "Olympisch Stadion, Amsterdam",
+  "detail": "Finale remportée par Benfica."
+ },
+ "1962-63": {
+  "winner": "AC Milan",
+  "loser": "Benfica",
+  "score": "2-1",
+  "date": "22 mai 1963",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "1963-64": {
+  "winner": "Inter Milan",
+  "loser": "Real Madrid",
+  "score": "3-1",
+  "date": "27 mai 1964",
+  "stadium": "Praterstadion, Vienne",
+  "detail": "Finale remportée par Inter Milan."
+ },
+ "1964-65": {
+  "winner": "Inter Milan",
+  "loser": "Benfica",
+  "score": "1-0",
+  "date": "27 mai 1965",
+  "stadium": "San Siro, Milan",
+  "detail": "Finale remportée par Inter Milan."
+ },
+ "1965-66": {
+  "winner": "Real Madrid",
+  "loser": "Partizan Belgrade",
+  "score": "2-1",
+  "date": "11 mai 1966",
+  "stadium": "Heysel Stadium, Bruxelles",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1966-67": {
+  "winner": "Celtic",
+  "loser": "Inter Milan",
+  "score": "2-1",
+  "date": "31 mai 1967",
+  "stadium": "Estádio Nacional, Lisbonne",
+  "detail": "Finale remportée par Celtic."
+ },
+ "1967-68": {
+  "winner": "Manchester United",
+  "loser": "Benfica",
+  "score": "4-1 a.p.",
+  "date": "29 mai 1968",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par Manchester United."
+ },
+ "1968-69": {
+  "winner": "AC Milan",
+  "loser": "Ajax",
+  "score": "4-1",
+  "date": "28 mai 1969",
+  "stadium": "Santiago Bernabéu, Madrid",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "1969-70": {
+  "winner": "Feyenoord",
+  "loser": "Celtic",
+  "score": "2-1 a.p.",
+  "date": "6 mai 1970",
+  "stadium": "San Siro, Milan",
+  "detail": "Finale remportée par Feyenoord."
+ },
+ "1970-71": {
+  "winner": "Ajax",
+  "loser": "Panathinaïkos",
+  "score": "2-0",
+  "date": "2 juin 1971",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par Ajax."
+ },
+ "1971-72": {
+  "winner": "Ajax",
+  "loser": "Inter Milan",
+  "score": "2-0",
+  "date": "31 mai 1972",
+  "stadium": "De Kuip, Rotterdam",
+  "detail": "Finale remportée par Ajax."
+ },
+ "1972-73": {
+  "winner": "Ajax",
+  "loser": "Juventus",
+  "score": "1-0",
+  "date": "30 mai 1973",
+  "stadium": "Red Star Stadium, Belgrade",
+  "detail": "Finale remportée par Ajax."
+ },
+ "1973-74": {
+  "winner": "Bayern Munich",
+  "loser": "Atlético de Madrid",
+  "score": "1-1 a.p. puis 4-0 (replay)",
+  "date": "15 mai 1974 (rejouée le 17 mai 1974)",
+  "stadium": "Heysel Stadium, Bruxelles",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "1974-75": {
+  "winner": "Bayern Munich",
+  "loser": "Leeds United",
+  "score": "2-0",
+  "date": "28 mai 1975",
+  "stadium": "Parc des Princes, Paris",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "1975-76": {
+  "winner": "Bayern Munich",
+  "loser": "Saint-Étienne",
+  "score": "1-0",
+  "date": "12 mai 1976",
+  "stadium": "Hampden Park, Glasgow",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "1976-77": {
+  "winner": "Liverpool",
+  "loser": "Borussia Mönchengladbach",
+  "score": "3-1",
+  "date": "25 mai 1977",
+  "stadium": "Stadio Olimpico, Rome",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "1977-78": {
+  "winner": "Liverpool",
+  "loser": "Club Bruges",
+  "score": "1-0",
+  "date": "10 mai 1978",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "1978-79": {
+  "winner": "Nottingham Forest",
+  "loser": "Malmö FF",
+  "score": "1-0",
+  "date": "30 mai 1979",
+  "stadium": "Olympiastadion, Munich",
+  "detail": "Finale remportée par Nottingham Forest."
+ },
+ "1979-80": {
+  "winner": "Nottingham Forest",
+  "loser": "Hambourg SV",
+  "score": "1-0",
+  "date": "28 mai 1980",
+  "stadium": "Santiago Bernabéu, Madrid",
+  "detail": "Finale remportée par Nottingham Forest."
+ },
+ "1980-81": {
+  "winner": "Liverpool",
+  "loser": "Real Madrid",
+  "score": "1-0",
+  "date": "27 mai 1981",
+  "stadium": "Parc des Princes, Paris",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "1981-82": {
+  "winner": "Aston Villa",
+  "loser": "Bayern Munich",
+  "score": "1-0",
+  "date": "26 mai 1982",
+  "stadium": "De Kuip, Rotterdam",
+  "detail": "Finale remportée par Aston Villa."
+ },
+ "1982-83": {
+  "winner": "Hambourg",
+  "loser": "Juventus",
+  "score": "1-0",
+  "date": "25 mai 1983",
+  "stadium": "Olympic Stadium, Athènes",
+  "detail": "Finale remportée par Hambourg."
+ },
+ "1983-84": {
+  "winner": "Liverpool",
+  "loser": "AS Roma",
+  "score": "1-1 (4-2 tab)",
+  "date": "30 mai 1984",
+  "stadium": "Stadio Olimpico, Rome",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "1984-85": {
+  "winner": "Juventus",
+  "loser": "Liverpool",
+  "score": "1-0",
+  "date": "29 mai 1985",
+  "stadium": "Heysel Stadium, Bruxelles",
+  "detail": "Finale remportée par Juventus."
+ },
+ "1985-86": {
+  "winner": "Steaua București",
+  "loser": "FC Barcelona",
+  "score": "0-0 (2-0 tab)",
+  "date": "7 mai 1986",
+  "stadium": "Ramón Sánchez Pizjuán, Séville",
+  "detail": "Finale remportée par Steaua București."
+ },
+ "1986-87": {
+  "winner": "FC Porto",
+  "loser": "Bayern Munich",
+  "score": "2-1",
+  "date": "27 mai 1987",
+  "stadium": "Praterstadion, Vienne",
+  "detail": "Finale remportée par FC Porto."
+ },
+ "1987-88": {
+  "winner": "PSV Eindhoven",
+  "loser": "Benfica",
+  "score": "0-0 (6-5 tab)",
+  "date": "25 mai 1988",
+  "stadium": "Neckarstadion, Stuttgart",
+  "detail": "Finale remportée par PSV Eindhoven."
+ },
+ "1988-89": {
+  "winner": "AC Milan",
+  "loser": "Steaua București",
+  "score": "4-0",
+  "date": "24 mai 1989",
+  "stadium": "Camp Nou, Barcelone",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "1989-90": {
+  "winner": "AC Milan",
+  "loser": "Benfica",
+  "score": "1-0",
+  "date": "23 mai 1990",
+  "stadium": "Praterstadion, Vienne",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "1990-91": {
+  "winner": "Étoile rouge de Belgrade",
+  "loser": "Olympique de Marseille",
+  "score": "0-0 (5-3 tab)",
+  "date": "29 mai 1991",
+  "stadium": "Stadio San Nicola, Bari",
+  "detail": "Finale remportée par Étoile rouge de Belgrade."
+ },
+ "1991-92": {
+  "winner": "FC Barcelona",
+  "loser": "Sampdoria",
+  "score": "1-0 a.p.",
+  "date": "20 mai 1992",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par FC Barcelona."
+ },
+ "1992-93": {
+  "winner": "Olympique de Marseille",
+  "loser": "AC Milan",
+  "score": "1-0",
+  "date": "26 mai 1993",
+  "stadium": "Olympiastadion, Munich",
+  "detail": "Finale remportée par Olympique de Marseille."
+ },
+ "1993-94": {
+  "winner": "AC Milan",
+  "loser": "FC Barcelona",
+  "score": "4-0",
+  "date": "18 mai 1994",
+  "stadium": "Olympic Stadium, Athènes",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "1994-95": {
+  "winner": "Ajax",
+  "loser": "AC Milan",
+  "score": "1-0",
+  "date": "24 mai 1995",
+  "stadium": "Ernst-Happel-Stadion, Vienne",
+  "detail": "Finale remportée par Ajax."
+ },
+ "1995-96": {
+  "winner": "Juventus",
+  "loser": "Ajax",
+  "score": "1-1 (4-2 tab)",
+  "date": "22 mai 1996",
+  "stadium": "Stadio Olimpico, Rome",
+  "detail": "Finale remportée par Juventus."
+ },
+ "1996-97": {
+  "winner": "Borussia Dortmund",
+  "loser": "Juventus",
+  "score": "3-1",
+  "date": "28 mai 1997",
+  "stadium": "Olympiastadion, Munich",
+  "detail": "Finale remportée par Borussia Dortmund."
+ },
+ "1997-98": {
+  "winner": "Real Madrid",
+  "loser": "Juventus",
+  "score": "1-0",
+  "date": "20 mai 1998",
+  "stadium": "Amsterdam ArenA, Amsterdam",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "1998-99": {
+  "winner": "Manchester United",
+  "loser": "Bayern Munich",
+  "score": "2-1",
+  "date": "26 mai 1999",
+  "stadium": "Camp Nou, Barcelone",
+  "detail": "Finale remportée par Manchester United."
+ },
+ "1999-00": {
+  "winner": "Real Madrid",
+  "loser": "Valence CF",
+  "score": "3-0",
+  "date": "24 mai 2000",
+  "stadium": "Stade de France, Saint-Denis",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2000-01": {
+  "winner": "Bayern Munich",
+  "loser": "Valence CF",
+  "score": "1-1 (5-4 tab)",
+  "date": "23 mai 2001",
+  "stadium": "San Siro, Milan",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "2001-02": {
+  "winner": "Real Madrid",
+  "loser": "Bayer Leverkusen",
+  "score": "2-1",
+  "date": "15 mai 2002",
+  "stadium": "Hampden Park, Glasgow",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2002-03": {
+  "winner": "AC Milan",
+  "loser": "Juventus",
+  "score": "0-0 (3-2 tab)",
+  "date": "28 mai 2003",
+  "stadium": "Old Trafford, Manchester",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "2003-04": {
+  "winner": "FC Porto",
+  "loser": "Monaco",
+  "score": "3-0",
+  "date": "26 mai 2004",
+  "stadium": "Arena AufSchalke, Gelsenkirchen",
+  "detail": "Finale remportée par FC Porto."
+ },
+ "2004-05": {
+  "winner": "Liverpool",
+  "loser": "AC Milan",
+  "score": "3-3 (3-2 tab)",
+  "date": "25 mai 2005",
+  "stadium": "Atatürk Olympic Stadium, Istanbul",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "2005-06": {
+  "winner": "FC Barcelona",
+  "loser": "Arsenal",
+  "score": "2-1",
+  "date": "17 mai 2006",
+  "stadium": "Stade de France, Saint-Denis",
+  "detail": "Finale remportée par FC Barcelona."
+ },
+ "2006-07": {
+  "winner": "AC Milan",
+  "loser": "Liverpool",
+  "score": "2-1",
+  "date": "23 mai 2007",
+  "stadium": "Olympic Stadium, Athènes",
+  "detail": "Finale remportée par AC Milan."
+ },
+ "2007-08": {
+  "winner": "Manchester United",
+  "loser": "Chelsea",
+  "score": "1-1 (6-5 tab)",
+  "date": "21 mai 2008",
+  "stadium": "Luzhniki Stadium, Moscou",
+  "detail": "Finale remportée par Manchester United."
+ },
+ "2008-09": {
+  "winner": "FC Barcelona",
+  "loser": "Manchester United",
+  "score": "2-0",
+  "date": "27 mai 2009",
+  "stadium": "Stadio Olimpico, Rome",
+  "detail": "Finale remportée par FC Barcelona."
+ },
+ "2009-10": {
+  "winner": "Inter Milan",
+  "loser": "Bayern Munich",
+  "score": "2-0",
+  "date": "22 mai 2010",
+  "stadium": "Santiago Bernabéu, Madrid",
+  "detail": "Finale remportée par Inter Milan."
+ },
+ "2010-11": {
+  "winner": "FC Barcelona",
+  "loser": "Manchester United",
+  "score": "3-1",
+  "date": "28 mai 2011",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par FC Barcelona."
+ },
+ "2011-12": {
+  "winner": "Chelsea",
+  "loser": "Bayern Munich",
+  "score": "1-1 (4-3 tab)",
+  "date": "19 mai 2012",
+  "stadium": "Allianz Arena, Munich",
+  "detail": "Finale remportée par Chelsea."
+ },
+ "2012-13": {
+  "winner": "Bayern Munich",
+  "loser": "Borussia Dortmund",
+  "score": "2-1",
+  "date": "25 mai 2013",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "2013-14": {
+  "winner": "Real Madrid",
+  "loser": "Atlético de Madrid",
+  "score": "4-1 a.p.",
+  "date": "24 mai 2014",
+  "stadium": "Estádio da Luz, Lisbonne",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2014-15": {
+  "winner": "FC Barcelona",
+  "loser": "Juventus",
+  "score": "3-1",
+  "date": "6 juin 2015",
+  "stadium": "Olympiastadion, Berlin",
+  "detail": "Finale remportée par FC Barcelona."
+ },
+ "2015-16": {
+  "winner": "Real Madrid",
+  "loser": "Atlético de Madrid",
+  "score": "1-1 (5-3 tab)",
+  "date": "28 mai 2016",
+  "stadium": "San Siro, Milan",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2016-17": {
+  "winner": "Real Madrid",
+  "loser": "Juventus",
+  "score": "4-1",
+  "date": "3 juin 2017",
+  "stadium": "Millennium Stadium, Cardiff",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2017-18": {
+  "winner": "Real Madrid",
+  "loser": "Liverpool",
+  "score": "3-1",
+  "date": "26 mai 2018",
+  "stadium": "NSC Olimpiyskiy Stadium, Kiev",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2018-19": {
+  "winner": "Liverpool",
+  "loser": "Tottenham Hotspur",
+  "score": "2-0",
+  "date": "1 juin 2019",
+  "stadium": "Metropolitano Stadium, Madrid",
+  "detail": "Finale remportée par Liverpool."
+ },
+ "2019-20": {
+  "winner": "Bayern Munich",
+  "loser": "Paris Saint-Germain",
+  "score": "1-0",
+  "date": "23 août 2020",
+  "stadium": "Estádio da Luz, Lisbonne",
+  "detail": "Finale remportée par Bayern Munich."
+ },
+ "2020-21": {
+  "winner": "Chelsea",
+  "loser": "Manchester City",
+  "score": "1-0",
+  "date": "29 mai 2021",
+  "stadium": "Estádio do Dragão, Porto",
+  "detail": "Finale remportée par Chelsea."
+ },
+ "2021-22": {
+  "winner": "Real Madrid",
+  "loser": "Liverpool",
+  "score": "1-0",
+  "date": "28 mai 2022",
+  "stadium": "Stade de France, Saint-Denis",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2022-23": {
+  "winner": "Manchester City",
+  "loser": "Inter Milan",
+  "score": "1-0",
+  "date": "10 juin 2023",
+  "stadium": "Atatürk Olympic Stadium, Istanbul",
+  "detail": "Finale remportée par Manchester City."
+ },
+ "2023-24": {
+  "winner": "Real Madrid",
+  "loser": "Borussia Dortmund",
+  "score": "2-0",
+  "date": "1 juin 2024",
+  "stadium": "Wembley Stadium, Londres",
+  "detail": "Finale remportée par Real Madrid."
+ },
+ "2024-25": {
+  "winner": "Paris Saint-Germain",
+  "loser": "Inter Milan",
+  "score": "5-0",
+  "date": "31 mai 2025",
+  "stadium": "Allianz Arena, Munich",
+  "detail": "Finale remportée par Paris Saint-Germain."
+ },
+ "2025-26": {
+  "winner": "Paris Saint-Germain",
+  "loser": "Arsenal",
+  "score": "1-1 (4-3 tab)",
+  "date": "30 mai 2026",
+  "stadium": "Puskás Aréna, Budapest",
+  "detail": "Finale remportée par Paris Saint-Germain."
+ }
+};
+
+const cafFinals={
+ "2025-26": {
+  "winner": "Mamelodi Sundowns",
+  "loser": "FAR Rabat",
+  "score": "2-1 au total (1-0, 1-1)",
+  "date": "17 mai 2026 / 24 mai 2026",
+  "stadium": "Loftus Versfeld Stadium, Pretoria / Prince Moulay Abdellah Stadium, Rabat"
+ },
+ "2024-25": {
+  "winner": "Pyramids FC",
+  "loser": "Mamelodi Sundowns",
+  "score": "3-2 au total (1-1, 2-1)",
+  "date": "24 mai 2025 / 1er juin 2025",
+  "stadium": "Loftus Versfeld Stadium, Pretoria / 30 June Stadium, Le Caire"
+ },
+ "2023-24": {
+  "winner": "Al Ahly",
+  "loser": "Espérance de Tunis",
+  "score": "1-0 au total (0-0, 1-0)",
+  "date": "18 mai 2024 / 25 mai 2024",
+  "stadium": "Stade Hammadi Agrebi, Tunis / Cairo International Stadium, Le Caire"
+ },
+ "2022-23": {
+  "winner": "Al Ahly",
+  "loser": "Wydad AC",
+  "score": "3-2 au total (2-1, 1-1)",
+  "date": "4 juin 2023 / 11 juin 2023",
+  "stadium": "Cairo International Stadium, Le Caire / Stade Mohammed V, Casablanca"
+ },
+ "2021-22": {
+  "winner": "Wydad AC",
+  "loser": "Al Ahly",
+  "score": "2-0",
+  "date": "30 mai 2022",
+  "stadium": "Stade Mohammed V, Casablanca"
+ },
+ "2020-21": {
+  "winner": "Al Ahly",
+  "loser": "Kaizer Chiefs",
+  "score": "3-0",
+  "date": "17 juillet 2021",
+  "stadium": "Stade Mohammed V, Casablanca"
+ },
+ "2019-20": {
+  "winner": "Al Ahly",
+  "loser": "Zamalek",
+  "score": "2-1",
+  "date": "27 novembre 2020",
+  "stadium": "Cairo International Stadium, Le Caire"
+ },
+ "2018-19": {
+  "winner": "Espérance de Tunis",
+  "loser": "Wydad AC",
+  "score": "4-1 au total (1-1, 3-0 après abandon)",
+  "date": "24 mai 2019 / 31 mai 2019",
+  "stadium": "Prince Moulay Abdellah Stadium, Rabat / Stade Olympique de Radès, Tunis",
+  "detail": "La finale retour a été abandonnée. L'Espérance de Tunis a ensuite été déclarée championne."
+ },
+ "2018": {
+  "winner": "Espérance de Tunis",
+  "loser": "Al Ahly",
+  "score": "4-3 au total (1-3, 3-0)",
+  "date": "2 novembre 2018 / 9 novembre 2018",
+  "stadium": "Borg El Arab Stadium, Alexandrie / Stade Olympique de Radès, Tunis"
+ },
+ "2017": {
+  "winner": "Wydad AC",
+  "loser": "Al Ahly",
+  "score": "2-1 au total (1-1, 1-0)",
+  "date": "28 octobre 2017 / 4 novembre 2017",
+  "stadium": "Borg El Arab Stadium, Alexandrie / Stade Mohammed V, Casablanca"
+ },
+ "2016": {
+  "winner": "Mamelodi Sundowns",
+  "loser": "Zamalek",
+  "score": "3-1 au total (3-0, 0-1)",
+  "date": "15 octobre 2016 / 23 octobre 2016",
+  "stadium": "Lucas Masterpieces Moripe Stadium, Pretoria / Borg El Arab Stadium, Alexandrie"
+ },
+ "2015": {
+  "winner": "TP Mazembe",
+  "loser": "USM Alger",
+  "score": "4-1 au total (2-1, 2-0)",
+  "date": "31 octobre 2015 / 8 novembre 2015",
+  "stadium": "Stade Omar Hamadi, Alger / Stade TP Mazembe, Lubumbashi"
+ },
+ "2014": {
+  "winner": "ES Sétif",
+  "loser": "AS Vita Club",
+  "score": "3-3 au total (2-2, 1-1), victoire à la règle des buts à l'extérieur",
+  "date": "26 octobre 2014 / 1er novembre 2014",
+  "stadium": "Stade Tata Raphaël, Kinshasa / Stade Mustapha Tchaker, Blida"
+ },
+ "2013": {
+  "winner": "Al Ahly",
+  "loser": "Orlando Pirates",
+  "score": "3-1 au total (1-1, 2-0)",
+  "date": "2 novembre 2013 / 10 novembre 2013",
+  "stadium": "Orlando Stadium, Johannesburg / Osman Ahmed Osman Stadium, Le Caire"
+ },
+ "2012": {
+  "winner": "Al Ahly",
+  "loser": "Espérance de Tunis",
+  "score": "3-2 au total (1-1, 2-1)",
+  "date": "4 novembre 2012 / 17 novembre 2012",
+  "stadium": "Borg El Arab Stadium, Alexandrie / Stade Olympique de Radès, Tunis"
+ },
+ "2011": {
+  "winner": "Espérance de Tunis",
+  "loser": "Wydad AC",
+  "score": "1-0 au total (0-0, 1-0)",
+  "date": "6 novembre 2011 / 12 novembre 2011",
+  "stadium": "Stade Mohammed V, Casablanca / Stade Olympique de Radès, Tunis"
+ },
+ "2010": {
+  "winner": "TP Mazembe",
+  "loser": "Espérance de Tunis",
+  "score": "6-1 au total (5-0, 1-1)",
+  "date": "31 octobre 2010 / 13 novembre 2010",
+  "stadium": "Stade de la Kenya, Lubumbashi / Stade du 7 Novembre, Tunis"
+ },
+ "2009": {
+  "winner": "TP Mazembe",
+  "loser": "Heartland FC",
+  "score": "2-2 au total, victoire à la règle des buts à l'extérieur (1-2, 1-0)",
+  "date": "1er novembre 2009 / 7 novembre 2009",
+  "stadium": "Dan Anyiam Stadium, Owerri / Stade Municipal de Lubumbashi, Lubumbashi"
+ },
+ "2008": {
+  "winner": "Al Ahly",
+  "loser": "Coton Sport",
+  "score": "4-2 au total (2-0, 2-2)",
+  "date": "2 novembre 2008 / 16 novembre 2008",
+  "stadium": "Cairo International Stadium, Le Caire / Stade Omnisport de Garoua, Garoua"
+ },
+ "2007": {
+  "winner": "Étoile du Sahel",
+  "loser": "Al Ahly",
+  "score": "3-1 au total (0-0, 3-1)",
+  "date": "27 octobre 2007 / 9 novembre 2007",
+  "stadium": "Stade Olympique de Sousse, Sousse / Cairo International Stadium, Le Caire"
+ },
+ "2006": {
+  "winner": "Al Ahly",
+  "loser": "CS Sfaxien",
+  "score": "2-1 au total (1-1, 1-0)",
+  "date": "29 octobre 2006 / 11 novembre 2006",
+  "stadium": "Cairo International Stadium, Le Caire / Stade du 7 Novembre, Tunis"
+ },
+ "2005": {
+  "winner": "Al Ahly",
+  "loser": "Étoile du Sahel",
+  "score": "3-0 au total (0-0, 3-0)",
+  "date": "29 octobre 2005 / 12 novembre 2005",
+  "stadium": "Stade Olympique de Sousse, Sousse / Cairo Military Academy Stadium, Le Caire"
+ },
+ "2004": {
+  "winner": "Enyimba",
+  "loser": "Étoile du Sahel",
+  "score": "3-3 au total (1-2, 2-1), Enyimba gagne 5-3 aux tirs au but",
+  "date": "4 décembre 2004 / 12 décembre 2004",
+  "stadium": "Stade Olympique de Sousse, Sousse / Nigeria National Stadium, Abuja"
+ },
+ "2003": {
+  "winner": "Enyimba",
+  "loser": "Ismaily",
+  "score": "2-1 au total (2-0, 0-1)",
+  "date": "30 novembre 2003 / 12 décembre 2003",
+  "stadium": "Enyimba International Stadium, Aba / Ismailia Stadium, Ismaïlia"
+ },
+ "2002": {
+  "winner": "Zamalek",
+  "loser": "Raja Casablanca",
+  "score": "1-0 au total (0-0, 1-0)",
+  "date": "30 novembre 2002 / 13 décembre 2002",
+  "stadium": "Stade Mohammed V, Casablanca / Cairo International Stadium, Le Caire"
+ },
+ "2001": {
+  "winner": "Al Ahly",
+  "loser": "Mamelodi Sundowns",
+  "score": "4-1 au total (1-1, 3-0)",
+  "date": "8 décembre 2001 / 21 décembre 2001",
+  "stadium": "Loftus Versfeld Stadium, Pretoria / Cairo International Stadium, Le Caire"
+ },
+ "2000": {
+  "winner": "Hearts of Oak",
+  "loser": "Espérance de Tunis",
+  "score": "5-2 au total (2-1, 3-1)",
+  "date": "2 décembre 2000 / 17 décembre 2000",
+  "stadium": "Stade El Menzah, Tunis / Ohene Djan Stadium, Accra"
+ },
+ "1999": {
+  "winner": "Raja Casablanca",
+  "loser": "Espérance de Tunis",
+  "score": "0-0 au total, Raja gagne 4-3 aux tirs au but",
+  "date": "27 novembre 1999 / 12 décembre 1999",
+  "stadium": "Stade Père-Jégo, Casablanca / Stade El Menzah, Tunis"
+ },
+ "1998": {
+  "winner": "ASEC Mimosas",
+  "loser": "Dynamos FC",
+  "score": "4-2 au total (0-0, 4-2)",
+  "date": "28 novembre 1998 / 12 décembre 1998",
+  "stadium": "National Sports Stadium, Harare / Stade Félix Houphouët-Boigny, Abidjan"
+ },
+ "1997": {
+  "winner": "Raja Casablanca",
+  "loser": "Obuasi Goldfields",
+  "score": "1-1 au total, Raja gagne 5-4 aux tirs au but (0-1, 1-0)",
+  "date": "30 novembre 1997 / 14 décembre 1997",
+  "stadium": "Len Clay Stadium, Obuasi / Stade Mohammed V, Casablanca"
+ },
+ "1996": {
+  "winner": "Zamalek",
+  "loser": "Shooting Stars",
+  "score": "3-3 au total, Zamalek gagne 5-4 aux tirs au but (1-2, 2-1)",
+  "date": "30 novembre 1996 / 13 décembre 1996",
+  "stadium": "Lekan Salami Stadium, Ibadan / Cairo International Stadium, Le Caire"
+ },
+ "1995": {
+  "winner": "Orlando Pirates",
+  "loser": "ASEC Mimosas",
+  "score": "3-2 au total (2-2, 1-0)",
+  "date": "2 décembre 1995 / 16 décembre 1995",
+  "stadium": "FNB Stadium, Johannesburg / Stade Félix Houphouët-Boigny, Abidjan"
+ },
+ "1994": {
+  "winner": "Espérance de Tunis",
+  "loser": "Zamalek",
+  "score": "3-1 au total (0-0, 3-1)",
+  "date": "4 décembre 1994 / 17 décembre 1994",
+  "stadium": "Cairo International Stadium, Le Caire / Stade El Menzah, Tunis"
+ },
+ "1993": {
+  "winner": "Zamalek",
+  "loser": "Asante Kotoko",
+  "score": "0-0 au total, Zamalek gagne 7-6 aux tirs au but",
+  "date": "28 novembre 1993 / 10 décembre 1993",
+  "stadium": "Kumasi Sports Stadium, Kumasi / Cairo International Stadium, Le Caire"
+ },
+ "1992": {
+  "winner": "Wydad Casablanca",
+  "loser": "Al-Hilal",
+  "score": "2-0 au total (2-0, 0-0)",
+  "date": "29 novembre 1992 / 13 décembre 1992",
+  "stadium": "Stade Mohammed V, Casablanca / Al-Hilal Stadium, Omdurman"
+ },
+ "1991": {
+  "winner": "Club Africain",
+  "loser": "SC Villa",
+  "score": "7-3 au total (6-2, 1-1)",
+  "date": "23 novembre 1991 / 14 décembre 1991",
+  "stadium": "Stade El Menzah, Tunis / Nakivubo Stadium, Kampala"
+ },
+ "1990": {
+  "winner": "JS Kabylie",
+  "loser": "Nkana Red Devils",
+  "score": "1-1 au total, JS Kabylie gagne 5-3 aux tirs au but (1-0, 0-1)",
+  "date": "30 novembre 1990 / 22 décembre 1990",
+  "stadium": "Stade du 5 Juillet, Alger / Independence Stadium, Lusaka"
+ },
+ "1989": {
+  "winner": "Raja Casablanca",
+  "loser": "MC Oran",
+  "score": "1-1 au total, Raja gagne 4-2 aux tirs au but (0-1, 1-0)",
+  "date": "3 décembre 1989 / 15 décembre 1989",
+  "stadium": "Stade Mohammed V, Casablanca / Stade du 19 Juin, Oran"
+ },
+ "1988": {
+  "winner": "ES Sétif",
+  "loser": "Iwuanyanwu Nationale",
+  "score": "4-1 au total (0-1, 4-0)",
+  "date": "26 novembre 1988 / 9 décembre 1988",
+  "stadium": "Liberty Stadium, Ibadan / Stade du 17 Juin 1962, Constantine"
+ },
+ "1987": {
+  "winner": "Al Ahly",
+  "loser": "Al-Hilal",
+  "score": "2-0 au total (0-0, 2-0)",
+  "date": "29 novembre 1987 / 18 décembre 1987",
+  "stadium": "Khartoum Stadium, Khartoum / Cairo International Stadium, Le Caire"
+ },
+ "1986": {
+  "winner": "Zamalek",
+  "loser": "Africa Sports",
+  "score": "2-2 au total, Zamalek gagne 4-2 aux tirs au but (2-0, 0-2)",
+  "date": "28 novembre 1986 / 21 décembre 1986",
+  "stadium": "Cairo International Stadium, Le Caire / Stade Félix Houphouët-Boigny, Abidjan"
+ },
+ "1985": {
+  "winner": "FAR Rabat",
+  "loser": "AS Bilima",
+  "score": "6-3 au total (5-2, 1-1)",
+  "date": "30 novembre 1985 / 22 décembre 1985",
+  "stadium": "Prince Moulay Abdellah Stadium, Rabat / Mobutu Stadium, Lubumbashi"
+ },
+ "1984": {
+  "winner": "Zamalek",
+  "loser": "Shooting Stars",
+  "score": "3-0 au total (2-0, 1-0)",
+  "date": "23 novembre 1984 / 8 décembre 1984",
+  "stadium": "Cairo Stadium, Le Caire / Surulere Stadium, Lagos"
+ },
+ "1983": {
+  "winner": "Asante Kotoko",
+  "loser": "Al Ahly",
+  "score": "1-0 au total (0-0, 1-0)",
+  "date": "27 novembre 1983 / 11 décembre 1983",
+  "stadium": "Cairo International Stadium, Le Caire / Kumasi Sports Stadium, Kumasi"
+ },
+ "1982": {
+  "winner": "Al Ahly",
+  "loser": "Asante Kotoko",
+  "score": "4-1 au total (3-0, 1-1)",
+  "date": "28 novembre 1982 / 12 décembre 1982",
+  "stadium": "Cairo International Stadium, Le Caire / Kumasi Sports Stadium, Kumasi"
+ },
+ "1981": {
+  "winner": "JS Kabylie",
+  "loser": "Vita Club",
+  "score": "5-0 au total (4-0, 1-0)",
+  "date": "27 novembre 1981 / 13 décembre 1981",
+  "stadium": "1st November Stadium, Tizi Ouzou / 20 May Stadium, Kinshasa"
+ },
+ "1980": {
+  "winner": "Canon Yaoundé",
+  "loser": "AS Bilima",
+  "score": "5-2 au total (2-2, 3-0)",
+  "date": "30 novembre 1980 / 14 décembre 1980",
+  "stadium": "Stade de Garoua, Garoua / 20 May Stadium, Kinshasa"
+ },
+ "1979": {
+  "winner": "Union Douala",
+  "loser": "Hearts of Oak",
+  "score": "1-1 au total (0-1, 1-0)",
+  "date": "2 décembre 1979 / 16 décembre 1979",
+  "stadium": "Accra Sports Stadium, Accra / Stade Omnisports, Yaoundé"
+ },
+ "1978": {
+  "winner": "Canon Yaoundé",
+  "loser": "Hafia FC",
+  "score": "2-0 au total (0-0, 2-0)",
+  "date": "3 décembre 1978 / 17 décembre 1978",
+  "stadium": "Stade du 28 Septembre, Conakry / Stade Omnisports, Yaoundé"
+ },
+ "1977": {
+  "winner": "Hafia FC",
+  "loser": "Hearts of Oak",
+  "score": "4-2 au total (1-0, 3-2)",
+  "date": "4 décembre 1977 / 18 décembre 1977",
+  "stadium": "Accra Sports Stadium, Accra / Stade du 28 Septembre, Conakry"
+ },
+ "1976": {
+  "winner": "MC Alger",
+  "loser": "Hafia FC",
+  "score": "3-3 au total (0-3, 3-0), MC Alger gagne aux tirs au but",
+  "date": "5 décembre 1976 / 12 décembre 1976",
+  "stadium": "Stade du 28 Septembre, Conakry / Stade 5 Juillet 1962, Alger"
+ },
+ "1975": {
+  "winner": "Hafia FC",
+  "loser": "Enugu Rangers",
+  "score": "3-1 au total (1-0, 2-1)",
+  "date": "7 décembre 1975 / 20 décembre 1975",
+  "stadium": "Stade du 28 Septembre, Conakry / Surulere Stadium, Lagos"
+ },
+ "1974": {
+  "winner": "CARA Brazzaville",
+  "loser": "Ghazl El Mahalla",
+  "score": "6-3 au total (4-2, 2-1)",
+  "date": "29 novembre 1974 / 13 décembre 1974",
+  "stadium": "Stade de la Révolution, Brazzaville / Ghazl El Mahalla Stadium, El Mahalla"
+ },
+ "1973": {
+  "winner": "Vita Club",
+  "loser": "Asante Kotoko",
+  "score": "5-4 au total (2-4, 3-0)",
+  "date": "25 novembre 1973 / 16 décembre 1973",
+  "stadium": "Kumasi Stadium, Kumasi / 20 May Stadium, Kinshasa"
+ },
+ "1972": {
+  "winner": "Hafia FC",
+  "loser": "Simba FC",
+  "score": "7-4 au total (4-2, 3-2)",
+  "date": "10 décembre 1972 / 22 décembre 1972",
+  "stadium": "Stade du 28 Septembre, Conakry / Nakivubo Stadium, Kampala"
+ },
+ "1971": {
+  "winner": "Canon Yaoundé",
+  "loser": "Asante Kotoko",
+  "score": "1-0 au match d'appui (0-3, 2-0, 1-0)",
+  "date": "5 décembre 1971 / 19 décembre 1971 / 21 décembre 1971",
+  "stadium": "Kumasi Stadium, Kumasi / Stade militaire de Yaoundé, Yaoundé / Stade militaire de Yaoundé, Yaoundé",
+  "detail": "Après une victoire chacun, un match d'appui a été joué à Yaoundé."
+ },
+ "1970": {
+  "winner": "Asante Kotoko",
+  "loser": "TP Englebert",
+  "score": "3-2 au total (1-1, 2-1)",
+  "date": "10 janvier 1971 / 24 janvier 1971",
+  "stadium": "Kumasi Stadium, Kumasi / 20 May Stadium, Kinshasa"
+ },
+ "1969": {
+  "winner": "Ismaily",
+  "loser": "TP Englebert",
+  "score": "5-3 au total (2-2, 3-1)",
+  "date": "22 décembre 1969 / 9 janvier 1970",
+  "stadium": "20 May Stadium, Kinshasa / Naser Stadium, Le Caire"
+ },
+ "1968": {
+  "winner": "TP Englebert",
+  "loser": "Étoile Filante",
+  "score": "6-4 au total (5-0, 1-4)",
+  "date": "16 mars 1969 / 30 mars 1969",
+  "stadium": "20 May Stadium, Kinshasa / Stade Général Eyadema, Lomé"
+ },
+ "1967": {
+  "winner": "TP Englebert",
+  "loser": "Asante Kotoko",
+  "score": "3-3, TP Englebert champion après forfait d'Asante Kotoko au troisième match",
+  "date": "19 novembre 1967 / 26 novembre 1967",
+  "stadium": "Kumasi Stadium, Kumasi / 20 May Stadium, Kinshasa",
+  "detail": "Après deux matches nuls, un troisième match devait être joué. Asante Kotoko ne s'est pas présenté et TP Englebert a été déclaré champion."
+ },
+ "1966": {
+  "winner": "Stade d'Abidjan",
+  "loser": "Real Bamako",
+  "score": "5-4 au total (1-3, 4-1 a.p.)",
+  "date": "11 décembre 1966 / 25 décembre 1966",
+  "stadium": "Stade Omnisports, Bamako / Stade Félix Houphouët-Boigny, Abidjan"
+ },
+ "1964-65": {
+  "winner": "Oryx Douala",
+  "loser": "Stade Malien",
+  "score": "2-1",
+  "date": "7 février 1965",
+  "stadium": "Accra Stadium, Accra"
+ }
+};
+
+const asianFinals={
+"2025-26":{winner:"Al Ahli Saudi FC",loser:"Machida Zelvia",score:"1-0 après prolongation",date:"25 avril 2026",stadium:"King Abdullah Sports City Stadium, Djeddah",detail:"Finale en un match. Al Ahli s’impose après prolongation."},
+"2024-25":{winner:"Al Ahli Saudi FC",loser:"Kawasaki Frontale",score:"2-0",date:"3 mai 2025",stadium:"King Abdullah Sports City Stadium, Djeddah"},
+"2023-24":{winner:"Al Ain",loser:"Yokohama F. Marinos",score:"6-3 au total (1-2, 5-1)",date:"11 mai 2024 / 25 mai 2024",stadium:"Nissan Stadium, Yokohama / Hazza bin Zayed Stadium, Al Ain"},
+"2022":{winner:"Urawa Red Diamonds",loser:"Al Hilal",score:"2-1 au total (1-1, 1-0)",date:"29 avril 2023 / 6 mai 2023",stadium:"King Fahd International Stadium, Riyad / Saitama Stadium 2002, Saitama"},
+"2021":{winner:"Al Hilal",loser:"Pohang Steelers",score:"2-0",date:"23 novembre 2021",stadium:"King Fahd International Stadium, Riyad"},
+"2020":{winner:"Ulsan Hyundai",loser:"Persepolis",score:"2-1",date:"19 décembre 2020",stadium:"Al Janoub Stadium, Al Wakrah"},
+"2019":{winner:"Al Hilal",loser:"Urawa Red Diamonds",score:"3-0 au total (1-0, 2-0)",date:"9 novembre 2019 / 24 novembre 2019",stadium:"King Saud University Stadium, Riyad / Saitama Stadium 2002, Saitama"},
+"2018":{winner:"Kashima Antlers",loser:"Persepolis",score:"2-0 au total (2-0, 0-0)",date:"3 novembre 2018 / 10 novembre 2018",stadium:"Kashima Soccer Stadium, Kashima / Azadi Stadium, Téhéran"},
+"2017":{winner:"Urawa Red Diamonds",loser:"Al Hilal",score:"2-1 au total (1-1, 1-0)",date:"18 novembre 2017 / 25 novembre 2017",stadium:"King Fahd International Stadium, Riyad / Saitama Stadium 2002, Saitama"},
+"2016":{winner:"Jeonbuk Hyundai Motors",loser:"Al Ain",score:"3-2 au total (2-1, 1-1)",date:"19 novembre 2016 / 26 novembre 2016",stadium:"Jeonju World Cup Stadium, Jeonju / Hazza Bin Zayed Stadium, Al Ain"},
+"2015":{winner:"Guangzhou Evergrande",loser:"Al Ahli",score:"1-0 au total (0-0, 1-0)",date:"21 novembre 2015 / 28 novembre 2015",stadium:"Al-Rashid Stadium, Dubaï / Tianhe Stadium, Guangzhou"},
+"2014":{winner:"Western Sydney Wanderers",loser:"Al Hilal",score:"1-0 au total (1-0, 0-0)",date:"25 octobre 2014 / 1er novembre 2014",stadium:"Parramatta Stadium, Sydney / King Fahd International Stadium, Riyad"},
+"2013":{winner:"Guangzhou Evergrande",loser:"FC Seoul",score:"3-3 au total (2-2, 1-1), buts à l’extérieur",date:"26 octobre 2013 / 9 novembre 2013",stadium:"Seoul World Cup Stadium, Séoul / Tianhe Stadium, Guangzhou"},
+"2012":{winner:"Ulsan Hyundai",loser:"Al Ahli",score:"3-0",date:"10 novembre 2012",stadium:"Ulsan Munsu Football Stadium, Ulsan"},
+"2011":{winner:"Al Sadd",loser:"Jeonbuk Hyundai Motors",score:"2-2, Al Sadd gagne 4-2 aux tirs au but",date:"5 novembre 2011",stadium:"Jeonju World Cup Stadium, Jeonju"},
+"2010":{winner:"Seongnam Ilhwa Chunma",loser:"Zob Ahan",score:"3-1",date:"13 novembre 2010",stadium:"National Stadium, Tokyo"},
+"2009":{winner:"Pohang Steelers",loser:"Al Ittihad",score:"2-1",date:"13 novembre 2009",stadium:"National Stadium, Tokyo"},
+"2008":{winner:"Gamba Osaka",loser:"Adelaide United",score:"5-0 au total (3-0, 2-0)",date:"5 novembre 2008 / 12 novembre 2008",stadium:"Osaka Expo '70 Stadium, Suita / Hindmarsh Stadium, Adelaide"},
+"2007":{winner:"Urawa Red Diamonds",loser:"Sepahan",score:"3-1 au total (1-1, 2-0)",date:"7 novembre 2007 / 14 novembre 2007",stadium:"Foolad Shahr Stadium, Fuladshahr / Saitama Stadium 2002, Saitama"},
+"2006":{winner:"Jeonbuk Hyundai Motors",loser:"Al-Karamah",score:"3-2 au total (2-0, 1-2)",date:"1er novembre 2006 / 8 novembre 2006",stadium:"Jeonju World Cup Stadium, Jeonju / Khaled bin Walid Stadium, Homs"},
+"2005":{winner:"Al Ittihad",loser:"Al Ain",score:"5-3 au total (1-1, 4-2)",date:"26 octobre 2005 / 5 novembre 2005",stadium:"Tahnoun Bin Mohamed Stadium, Al Ain / Abdullah Al Faisal Stadium, Djeddah"},
+"2004":{winner:"Al Ittihad",loser:"Seongnam Ilhwa Chunma",score:"6-3 au total (1-3, 5-0)",date:"1er décembre 2004 / 11 décembre 2004",stadium:"Abdullah Al Faisal Stadium, Djeddah / Seongnam Stadium, Seongnam"},
+"2002-03":{winner:"Al Ain",loser:"BEC Tero Sasana",score:"2-1 au total (2-0, 0-1)",date:"3 octobre 2003 / 11 octobre 2003",stadium:"Tahnoun Bin Mohamed Stadium, Al Ain / Rajamangala Stadium, Bangkok"},
+"2001-02":{winner:"Suwon Samsung Bluewings",loser:"Anyang LG Cheetahs",score:"0-0, Suwon gagne 4-2 aux tirs au but",date:"5 avril 2002",stadium:"Azadi Stadium, Téhéran"},
+"2000-01":{winner:"Suwon Samsung Bluewings",loser:"Júbilo Iwata",score:"1-0",date:"26 mai 2001",stadium:"Suwon World Cup Stadium, Suwon"},
+"1999-00":{winner:"Al Hilal",loser:"Júbilo Iwata",score:"3-2 après prolongation",date:"22 avril 2000",stadium:"King Fahd Sports City, Riyad"},
+"1998-99":{winner:"Júbilo Iwata",loser:"Esteghlal",score:"2-1",date:"30 avril 1999",stadium:"Azadi Stadium, Téhéran"},
+"1997-98":{winner:"Pohang Steelers",loser:"Dalian Wanda",score:"0-0, Pohang gagne 6-5 aux tirs au but",date:"4 mai 1998",stadium:"Hong Kong Stadium, Hong Kong"},
+"1996-97":{winner:"Pohang Steelers",loser:"Seongnam Ilhwa Chunma",score:"2-1 après prolongation",date:"9 mars 1997",stadium:"Bukit Jalil National Stadium, Kuala Lumpur"},
+"1995-96":{winner:"Seongnam Ilhwa Chunma",loser:"Al-Nassr",score:"1-0 après prolongation",date:"31 décembre 1995",stadium:"King Fahd Stadium, Riyad"},
+"1994-95":{winner:"Thai Farmers Bank",loser:"Al-Arabi",score:"1-0",date:"29 janvier 1995",stadium:"Supachalasai National Stadium, Bangkok"},
+"1993-94":{winner:"Thai Farmers Bank",loser:"Oman Club",score:"2-1",date:"7 février 1994",stadium:"Supachalasai National Stadium, Bangkok"},
+"1992-93":{winner:"PAS Tehran",loser:"Al-Shabab",score:"1-0",date:"22 janvier 1993",stadium:"Al Ahli Stadium, Manama"},
+"1991-92":{winner:"Al Hilal",loser:"Esteghlal",score:"1-1, Al Hilal gagne 4-3 aux tirs au but",date:"22 décembre 1991",stadium:"Khalifa International Stadium, Doha"},
+"1990-91":{winner:"Esteghlal",loser:"Liaoning",score:"2-1",date:"29 juillet 1991",stadium:"Bangabandhu National Stadium, Dhaka"},
+"1989-90":{winner:"Liaoning",loser:"Nissan Yokohama",score:"3-2 au total (2-1, 1-1)",date:"22 avril 1990 / 29 avril 1990",stadium:"Mitsuzawa Stadium, Yokohama / Tiexi New District Sports Center, Shenyang"},
+"1988-89":{winner:"Al-Sadd",loser:"Al-Rasheed",score:"3-3 au total, Al-Sadd gagne aux buts à l’extérieur (2-3, 1-0)",date:"31 mars 1989 / 6 avril 1989",stadium:"Al-Shaab Stadium, Bagdad / Sheikh Al-Saani Stadium, Doha"},
+"1987-88":{winner:"Yomiuri FC",loser:"Al Hilal",score:"Victoire par forfait",date:"1988",stadium:"Faisal bin Fahd Stadium, Riyad / Ajinomoto Field Nishigaoka, Tokyo",detail:"Al Hilal a déclaré forfait avant la première manche."},
+"1986-87":{winner:"Furukawa Electric",loser:"Al Hilal",score:"4-3 (phase finale en groupe)",date:"26 décembre 1986",stadium:"Riyad",detail:"La compétition se décidait par une phase finale en groupe ; Furukawa termine premier."},
+"1985-86":{winner:"Daewoo Royals",loser:"Al Ahli",score:"3-1 après prolongation",date:"24 janvier 1986",stadium:"Abdullah Al Faisal Stadium, Djeddah"},
+"1971":{winner:"Maccabi Tel Aviv",loser:"Al-Shorta",score:"Victoire par forfait",date:"1971",stadium:"Supachalasai National Stadium, Bangkok",detail:"Al-Shorta n'a pas disputé la finale."},
+"1970":{winner:"Taj Tehran",loser:"Hapoel Tel Aviv",score:"2-1",date:"1970",stadium:"Amjadieh Stadium, Téhéran"},
+"1969":{winner:"Maccabi Tel Aviv",loser:"Yangzee FC",score:"1-0 après prolongation",date:"30 janvier 1969",stadium:"Supachalasai National Stadium, Bangkok"},
+"1967":{winner:"Hapoel Tel Aviv",loser:"Selangor",score:"2-1",date:"1967",stadium:"Supachalasai National Stadium, Bangkok"}
+};
+
+const extraCompetitions={
+copa:{title:"🌎 Copa América",items:["2024 : Argentine","2021 : Argentine","2019 : Brésil","2016 : Chili","2015 : Chili"]},
+libertadores:{title:"🏆 Copa Libertadores",items:["2025 : Flamengo","2024 : Botafogo","2023 : Fluminense","2022 : Flamengo","2021 : Palmeiras"]},
+can:{title:"🌍 Coupe d'Afrique des Nations",items:["2025 : Maroc","2023 : Côte d'Ivoire","2021 : Sénégal","2019 : Algérie","2017 : Cameroun"]},
+caf:{title:"🌍 Ligue des champions africaine",items:Object.entries(cafFinals).map(([k,v])=>k+" : "+v.winner)},
+acl:{title:"🌏 Ligue des champions asiatique",items:Object.entries(asianFinals).map(([k,v])=>k+" : "+v.winner)},
+nationsleague:{title:"🌐 Ligue des nations",items:["2025 : Portugal","2023 : Espagne","2021 : France","2019 : Portugal"]},
+ligue1:{title:"🇫🇷 Ligue 1",items:["2025-26 : Paris Saint-Germain","2024-25 : Paris Saint-Germain","2023-24 : Paris Saint-Germain","2022-23 : Paris Saint-Germain","2021-22 : Paris Saint-Germain"]},
+premierleague:{title:"🏴 Premier League",items:["2025-26 : Manchester City","2024-25 : Liverpool","2023-24 : Manchester City","2022-23 : Manchester City","2021-22 : Manchester City"]},
+liga:{title:"🇪🇸 Liga",items:["2025-26 : FC Barcelone","2024-25 : FC Barcelone","2023-24 : Real Madrid","2022-23 : FC Barcelone","2021-22 : Real Madrid"]},
+seriea:{title:"🇮🇹 Serie A",items:["2025-26 : Inter Milan","2024-25 : Napoli","2023-24 : Inter Milan","2022-23 : Napoli","2021-22 : AC Milan"]},
+bundesliga:{title:"🇩🇪 Bundesliga",items:["2025-26 : Bayern Munich","2024-25 : Bayern Munich","2023-24 : Bayer Leverkusen","2022-23 : Bayern Munich","2021-22 : Bayern Munich"]}
+};
+function showExtraCompetition(key){
+ const c=extraCompetitions[key];
+ if(!c)return;
+ document.getElementById('moreCompTitle').textContent=c.title;
+ document.getElementById('moreCompIntro').textContent=(key==='caf' || key==='acl')
+   ? 'Tous les vainqueurs depuis la première édition. Appuie sur une saison pour voir le résultat, l’adversaire, les dates et les stades de la finale.'
+   : 'Palmarès des dernières saisons.';
+ if(key==='caf' || key==='acl'){
+   const data = key==='caf' ? cafFinals : asianFinals;
+   if(key==='acl'){
+     const order = ['2025-26','2024-25','2023-24','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008','2007','2006','2005','2004','2002-03','2001-02','2000-01','1999-00','1998-99','1997-98','1996-97','1995-96','1994-95','1993-94','1992-93','1991-92','1990-91','1989-90','1988-89','1987-88','1986-87','1985-86','1971','1970','1969','1967'];
+     const modern = order.filter(season=>!['1971','1970','1969','1967'].includes(season));
+     const firstPeriod = ['1971','1970','1969','1967'];
+     let html = modern.filter(season=>season!=='1985-86').map(season=>
+       '<button class="item itemBtn" onclick="showFinal2(\''+key+'\',\''+season+'\')"><b>'+season+' :</b> '+data[season].winner+'</button>'
+     ).join('');
+     html += '<div class="item"><b>⏸️ 1972-1984 :</b> Pas de compétition (interruption)</div>';
+     html += '<div class="item"><b>📜 Première période</b> — 1967 à 1971</div>';
+     html += firstPeriod.map(season=>
+       '<button class="item itemBtn" onclick="showFinal2(\''+key+'\',\''+season+'\')"><b>'+season+' :</b> '+data[season].winner+'</button>'
+     ).join('');
+     html += '<div class="item"><b>1968 :</b> Pas de compétition</div>';
+     // L'édition 1985-86 marque la reprise : elle doit apparaître juste après la période d’interruption.
+     html = html.replace('<div class="item"><b>⏸️ 1972-1984 :</b> Pas de compétition (interruption)</div>', '<div class="item"><b>⏸️ 1972-1984 :</b> Pas de compétition (interruption)</div><div class="item"><b>▶️ Reprise en 1985</b></div><button class="item itemBtn" onclick="showFinal2(\''+key+'\',\'1985-86\')"><b>1985-86 :</b> '+data['1985-86'].winner+'</button>');
+     document.getElementById('moreCompList').innerHTML=html;
+   } else {
+     document.getElementById('moreCompList').innerHTML=Object.entries(data).map(([season,f])=>
+       '<button class="item itemBtn" onclick="showFinal2(\''+key+'\',\''+season+'\')"><b>'+season+' :</b> '+f.winner+'</button>'
+     ).join('');
+   }
+ }else{
+   document.getElementById('moreCompList').innerHTML=c.items.map(x=>{const p=x.split(' : ');return '<div class="item"><b>'+p[0]+' :</b> '+p.slice(1).join(' : ')+'</div>';}).join('');
+ }
+ activeExtraKey=key;
+ showPage('moreComps');
+}
+
+
+const leagueData = {
+ ligue1:{title:"🇫🇷 Ligue 1",items:["2025-26 : Paris Saint-Germain","2024-25 : Paris Saint-Germain","2023-24 : Paris Saint-Germain","2022-23 : Paris Saint-Germain","2021-22 : Paris Saint-Germain"]},
+ premierleague:{title:"🏴 Premier League",items:["2025-26 : Manchester City","2024-25 : Liverpool","2023-24 : Manchester City","2022-23 : Manchester City","2021-22 : Manchester City"]},
+ liga:{title:"🇪🇸 Liga",items:["2025-26 : FC Barcelone","2024-25 : FC Barcelone","2023-24 : Real Madrid","2022-23 : FC Barcelone","2021-22 : Real Madrid"]},
+ seriea:{title:"🇮🇹 Serie A",items:["2025-26 : Inter Milan","2024-25 : Napoli","2023-24 : Inter Milan","2022-23 : Napoli","2021-22 : AC Milan"]},
+ bundesliga:{title:"🇩🇪 Bundesliga",items:["2025-26 : Bayern Munich","2024-25 : Bayern Munich","2023-24 : Bayer Leverkusen","2022-23 : Bayern Munich","2021-22 : Bayern Munich"]}
+};
+function showLeague(key){
+ const c=leagueData[key];
+ document.getElementById('moreCompTitle').textContent=c.title;
+ document.getElementById('moreCompIntro').textContent="Les champions des dernières saisons.";
+ document.getElementById('moreCompList').innerHTML=c.items.map(x=>{
+   const p=x.split(' : ');
+   return '<div class="item"><b>'+p[0]+' :</b> '+p.slice(1).join(' : ')+'</div>';
+ }).join('');
+ showPage('moreComps');
+}
+
+const otherFinals = {
+ europa: {
+  "1971-72": {winner:"Tottenham Hotspur", loser:"Wolverhampton Wanderers", score:"2-3 au total (1-2, 1-1)", date:"3 mai 1972 / 17 mai 1972", stadium:"Molineux, Wolverhampton / White Hart Lane, Londres"},
+  "1972-73": {winner:"Liverpool", loser:"Borussia Mönchengladbach", score:"3-2 au total (3-0, 0-2)", date:"10 mai 1973 / 23 mai 1973", stadium:"Anfield, Liverpool / Bökelbergstadion, Mönchengladbach"},
+  "1973-74": {winner:"Feyenoord", loser:"Tottenham Hotspur", score:"4-2 au total (2-2, 2-0)", date:"21 mai 1974 / 29 mai 1974", stadium:"White Hart Lane, Londres / De Kuip, Rotterdam"},
+  "1974-75": {winner:"Borussia Mönchengladbach", loser:"Twente", score:"5-1 au total (0-0, 5-1)", date:"7 mai 1975 / 21 mai 1975", stadium:"Rheinstadion, Düsseldorf / Diekman Stadion, Enschede"},
+  "1975-76": {winner:"Liverpool", loser:"Club Bruges", score:"4-3 au total (3-2, 1-1)", date:"28 avril 1976 / 19 mai 1976", stadium:"Anfield, Liverpool / Olympiastadion, Bruges"},
+  "1976-77": {winner:"Juventus", loser:"Athletic Bilbao", score:"2-2 au total (1-0, 1-2), victoire à la règle des buts à l’extérieur", date:"4 mai 1977 / 18 mai 1977", stadium:"Stadio Comunale, Turin / San Mamés, Bilbao"},
+  "1977-78": {winner:"PSV Eindhoven", loser:"Bastia", score:"3-0 au total (0-0, 3-0)", date:"26 avril 1978 / 9 mai 1978", stadium:"Stade Armand Cesari, Bastia / Philips Stadion, Eindhoven"},
+  "1978-79": {winner:"Borussia Mönchengladbach", loser:"Étoile Rouge de Belgrade", score:"2-1 au total (1-1, 1-0)", date:"9 mai 1979 / 23 mai 1979", stadium:"Stadion Crvena Zvezda, Belgrade / Rheinstadion, Düsseldorf"},
+  "1979-80": {winner:"Eintracht Francfort", loser:"Borussia Mönchengladbach", score:"3-3 au total (2-3, 1-0), victoire à la règle des buts à l’extérieur", date:"7 mai 1980 / 21 mai 1980", stadium:"Bökelbergstadion, Mönchengladbach / Waldstadion, Francfort"},
+  "1980-81": {winner:"Ipswich Town", loser:"AZ", score:"5-4 au total (3-0, 2-4)", date:"6 mai 1981 / 20 mai 1981", stadium:"Portman Road, Ipswich / Olympisch Stadion, Amsterdam"},
+  "1981-82": {winner:"IFK Göteborg", loser:"Hamburger SV", score:"4-0 au total (1-0, 3-0)", date:"5 mai 1982 / 19 mai 1982", stadium:"Nya Ullevi, Göteborg / Volksparkstadion, Hambourg"},
+  "1982-83": {winner:"Anderlecht", loser:"Benfica", score:"2-1 au total (1-0, 1-1)", date:"4 mai 1983 / 18 mai 1983", stadium:"Heysel Stadium, Bruxelles / Estádio da Luz, Lisbonne"},
+  "1983-84": {winner:"Tottenham Hotspur", loser:"Anderlecht", score:"2-2 au total, Tottenham gagne 4-3 aux tirs au but", date:"9 mai 1984 / 23 mai 1984", stadium:"Constant Vanden Stock, Bruxelles / White Hart Lane, Londres"},
+  "1984-85": {winner:"Real Madrid", loser:"Videoton", score:"3-1 au total (3-0, 0-1)", date:"8 mai 1985 / 22 mai 1985", stadium:"Sóstói Stadion, Székesfehérvár / Santiago Bernabéu, Madrid"},
+  "1985-86": {winner:"Real Madrid", loser:"1. FC Köln", score:"5-3 au total (5-1, 0-2)", date:"30 avril 1986 / 6 mai 1986", stadium:"Santiago Bernabéu, Madrid / Olympiastadion, Berlin"},
+  "1986-87": {winner:"IFK Göteborg", loser:"Dundee United", score:"2-1 au total (1-0, 1-1)", date:"6 mai 1987 / 20 mai 1987", stadium:"Nya Ullevi, Göteborg / Tannadice Park, Dundee"},
+  "1987-88": {winner:"Bayer Leverkusen", loser:"Espanyol", score:"3-3 au total, Leverkusen gagne 3-2 aux tirs au but", date:"4 mai 1988 / 18 mai 1988", stadium:"Estadi de Sarrià, Barcelone / Ulrich-Haberland-Stadion, Leverkusen"},
+  "1988-89": {winner:"Napoli", loser:"VfB Stuttgart", score:"5-4 au total (2-1, 3-3)", date:"3 mai 1989 / 17 mai 1989", stadium:"Stadio San Paolo, Naples / Neckarstadion, Stuttgart"},
+  "1989-90": {winner:"Juventus", loser:"Fiorentina", score:"3-1 au total (3-1, 0-0)", date:"2 mai 1990 / 16 mai 1990", stadium:"Stadio Comunale, Turin / Stadio Partenio, Avellino"},
+  "1990-91": {winner:"Inter Milan", loser:"Roma", score:"2-1 au total (2-0, 0-1)", date:"8 mai 1991 / 22 mai 1991", stadium:"San Siro, Milan / Stadio Olimpico, Rome"},
+  "1991-92": {winner:"Ajax", loser:"Torino", score:"2-2 au total, Ajax gagne à la règle des buts à l’extérieur (2-2, 0-0)", date:"29 avril 1992 / 13 mai 1992", stadium:"Stadio delle Alpi, Turin / Olympisch Stadion, Amsterdam"},
+  "1992-93": {winner:"Juventus", loser:"Borussia Dortmund", score:"6-1 au total (3-1, 3-0)", date:"5 mai 1993 / 19 mai 1993", stadium:"Westfalenstadion, Dortmund / Stadio delle Alpi, Turin"},
+  "1993-94": {winner:"Inter Milan", loser:"Austria Salzburg", score:"2-0 au total (1-0, 1-0)", date:"26 avril 1994 / 11 mai 1994", stadium:"Ernst-Happel-Stadion, Vienne / San Siro, Milan"},
+  "1994-95": {winner:"Parma", loser:"Juventus", score:"2-1 au total (1-0, 1-1)", date:"3 mai 1995 / 17 mai 1995", stadium:"Stadio Ennio Tardini, Parme / San Siro, Milan"},
+  "1995-96": {winner:"Bayern Munich", loser:"Bordeaux", score:"5-1 au total (2-0, 3-1)", date:"1er mai 1996 / 15 mai 1996", stadium:"Olympiastadion, Munich / Parc Lescure, Bordeaux"},
+  "1996-97": {winner:"Schalke 04", loser:"Inter Milan", score:"1-1 au total, Schalke gagne 4-1 aux tirs au but", date:"7 mai 1997 / 14 mai 1997", stadium:"Parkstadion, Gelsenkirchen / San Siro, Milan"},
+  "1997-98": {winner:"Inter Milan", loser:"Lazio", score:"3-0", date:"6 mai 1998", stadium:"Parc des Princes, Paris"},
+  "1998-99": {winner:"Parma", loser:"Marseille", score:"3-0", date:"12 mai 1999", stadium:"Luzhniki Stadium, Moscou"},
+  "1999-2000": {winner:"Galatasaray", loser:"Arsenal", score:"0-0, Galatasaray gagne 4-1 aux tirs au but", date:"17 mai 2000", stadium:"Parken Stadium, Copenhague"},
+  "2000-01": {winner:"Liverpool", loser:"Alavés", score:"5-4 a.p.", date:"16 mai 2001", stadium:"Westfalenstadion, Dortmund"},
+  "2001-02": {winner:"Feyenoord", loser:"Borussia Dortmund", score:"3-2", date:"8 mai 2002", stadium:"De Kuip, Rotterdam"},
+  "2002-03": {winner:"Porto", loser:"Celtic", score:"3-2 a.p.", date:"21 mai 2003", stadium:"Estadio Olímpico de Sevilla, Séville"},
+  "2003-04": {winner:"Valencia", loser:"Marseille", score:"2-0", date:"19 mai 2004", stadium:"Nya Ullevi, Göteborg"},
+  "2004-05": {winner:"CSKA Moscow", loser:"Sporting CP", score:"3-1", date:"18 mai 2005", stadium:"Estádio José Alvalade, Lisbonne"},
+  "2005-06": {winner:"Sevilla", loser:"Middlesbrough", score:"4-0", date:"10 mai 2006", stadium:"Philips Stadion, Eindhoven"},
+  "2006-07": {winner:"Sevilla", loser:"Espanyol", score:"2-2 a.p. (3-1 aux tirs au but)", date:"16 mai 2007", stadium:"Hampden Park, Glasgow"},
+  "2007-08": {winner:"Zenit Saint Petersburg", loser:"Rangers", score:"2-0", date:"14 mai 2008", stadium:"City of Manchester Stadium, Manchester"},
+  "2008-09": {winner:"Shakhtar Donetsk", loser:"Werder Bremen", score:"2-1 a.p.", date:"20 mai 2009", stadium:"Şükrü Saracoğlu Stadium, Istanbul"},
+  "2009-10": {winner:"Atlético Madrid", loser:"Fulham", score:"2-1 a.p.", date:"12 mai 2010", stadium:"Volksparkstadion, Hambourg"},
+  "2010-11": {winner:"Porto", loser:"Braga", score:"1-0", date:"18 mai 2011", stadium:"Lansdowne Road, Dublin"},
+  "2011-12": {winner:"Atlético Madrid", loser:"Athletic Bilbao", score:"3-0", date:"9 mai 2012", stadium:"Arena Națională, Bucarest"},
+  "2012-13": {winner:"Chelsea", loser:"Benfica", score:"2-1", date:"15 mai 2013", stadium:"Amsterdam Arena, Amsterdam"},
+  "2013-14": {winner:"Sevilla", loser:"Benfica", score:"0-0, Sevilla gagne 4-2 aux tirs au but", date:"14 mai 2014", stadium:"Juventus Stadium, Turin"},
+  "2014-15": {winner:"Sevilla", loser:"Dnipro", score:"3-2", date:"27 mai 2015", stadium:"National Stadium, Varsovie"},
+  "2015-16": {winner:"Sevilla", loser:"Liverpool", score:"3-1", date:"18 mai 2016", stadium:"St. Jakob-Park, Bâle"},
+  "2016-17": {winner:"Manchester United", loser:"Ajax", score:"2-0", date:"24 mai 2017", stadium:"Friends Arena, Solna"},
+  "2017-18": {winner:"Atlético Madrid", loser:"Marseille", score:"3-0", date:"16 mai 2018", stadium:"Parc Olympique Lyonnais, Décines-Charpieu"},
+  "2018-19": {winner:"Chelsea", loser:"Arsenal", score:"4-1", date:"29 mai 2019", stadium:"Olympic Stadium, Bakou"},
+  "2019-20": {winner:"Sevilla", loser:"Inter Milan", score:"3-2", date:"21 août 2020", stadium:"Stadion Köln, Cologne"},
+  "2020-21": {winner:"Villarreal", loser:"Manchester United", score:"1-1, Villarreal gagne 11-10 aux tirs au but", date:"26 mai 2021", stadium:"Stadion Gdańsk, Gdańsk"},
+  "2021-22": {winner:"Eintracht Francfort", loser:"Rangers", score:"1-1, Francfort gagne 5-4 aux tirs au but", date:"18 mai 2022", stadium:"Ramón Sánchez-Pizjuán, Séville"},
+  "2022-23": {winner:"Séville", loser:"AS Roma", score:"1-1, Séville gagne 4-1 aux tirs au but", date:"31 mai 2023", stadium:"Puskás Aréna, Budapest"},
+  "2023-24": {winner:"Atalanta", loser:"Bayer Leverkusen", score:"3-0", date:"22 mai 2024", stadium:"Aviva Stadium, Dublin"},
+  "2024-25": {winner:"Tottenham", loser:"Manchester United", score:"1-0", date:"21 mai 2025", stadium:"San Mamés, Bilbao"},
+  "2025-26": {winner:"Aston Villa", loser:"Freiburg", score:"3-0", date:"20 mai 2026", stadium:"Beşiktaş Park, Istanbul"}
+ },
+ conference: {
+  "2025-26": {winner:"Crystal Palace", loser:"Rayo Vallecano", score:"1-0", date:"27 mai 2026", stadium:"Leipzig Stadium, Leipzig"},
+  "2024-25": {winner:"Chelsea", loser:"Real Betis", score:"4-1", date:"28 mai 2025", stadium:"Stadion Wrocław, Wrocław"},
+  "2023-24": {winner:"Olympiacos", loser:"Fiorentina", score:"1-0 a.p.", date:"29 mai 2024", stadium:"OPAP Arena, Athènes"},
+  "2022-23": {winner:"West Ham United", loser:"Fiorentina", score:"2-1", date:"7 juin 2023", stadium:"Fortuna Arena, Prague"},
+  "2021-22": {winner:"AS Roma", loser:"Feyenoord", score:"1-0", date:"25 mai 2022", stadium:"Arena Kombëtare, Tirana"}
+ },
+ mondial: {
+  "2026": {winner:"Espagne", loser:"Argentine", score:"1-0 a.p.", date:"19 juillet 2026", stadium:"New York New Jersey Stadium"},
+  "2022": {winner:"Argentine", loser:"France", score:"3-3 (4-2 aux tirs au but)", date:"18 décembre 2022", stadium:"Lusail Stadium, Lusail"},
+  "2018": {winner:"France", loser:"Croatie", score:"4-2", date:"15 juillet 2018", stadium:"Loujniki, Moscou"},
+  "2014": {winner:"Allemagne", loser:"Argentine", score:"1-0 a.p.", date:"13 juillet 2014", stadium:"Maracanã, Rio de Janeiro"},
+  "2010": {winner:"Espagne", loser:"Pays-Bas", score:"1-0 a.p.", date:"11 juillet 2010", stadium:"Soccer City, Johannesburg"}
+ },
+ euro: {
+  "2024": {winner:"Espagne", loser:"Angleterre", score:"2-1", date:"14 juillet 2024", stadium:"Olympiastadion, Berlin"},
+  "2020": {winner:"Italie", loser:"Angleterre", score:"1-1 (3-2 aux tirs au but)", date:"11 juillet 2021", stadium:"Wembley, Londres"},
+  "2016": {winner:"Portugal", loser:"France", score:"1-0 a.p.", date:"10 juillet 2016", stadium:"Stade de France, Saint-Denis"},
+  "2012": {winner:"Espagne", loser:"Italie", score:"4-0", date:"1er juillet 2012", stadium:"Stade olympique, Kiev"},
+  "2008": {winner:"Espagne", loser:"Allemagne", score:"1-0", date:"29 juin 2008", stadium:"Ernst-Happel-Stadion, Vienne"}
+ }
+};
+
+let lastComp = 'competitions';
+let returnScrollY = 0;
+let competitionsScrollY = 0;
+
+// Gestion centralisée du défilement : chaque page mémorise sa propre position.
+const pageScrollPositions = {};
+let currentPageId = null;
+
+function saveCurrentScroll(){
+ const active = document.querySelector('.page.active');
+ if(active) pageScrollPositions[active.id] = window.scrollY || window.pageYOffset || 0;
+}
+
+function restoreScroll(pageId, fallback=0){
+ const y = Object.prototype.hasOwnProperty.call(pageScrollPositions,pageId)
+   ? pageScrollPositions[pageId] : fallback;
+ // Deux frames garantissent que le contenu de la page est déjà rendu sur mobile.
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   window.scrollTo({top:y,left:0,behavior:'auto'});
+ }));
+}
+
+function showComp(comp){
+ saveCurrentScroll();
+ competitionsScrollY = pageScrollPositions['competitions'] ?? window.scrollY ?? 0;
+ lastComp = comp;
+ if(leagueData[comp]) showLeague(comp);
+ else if(extraCompetitions[comp]) showExtraCompetition(comp);
+ else showPage(comp);
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+}
+
+function cafMatchDetails(f){
+  const dates = (f.date || '').split(' / ');
+  const stadiums = (f.stadium || '').split(' / ');
+  let legScores = [];
+  const m = (f.score || '').match(/\(([^()]*)\)/);
+  if(m){
+    legScores = m[1].split(',').map(x=>x.trim());
+  } else if((dates.length > 1) && f.score && f.score.includes(',')){
+    legScores = f.score.split(',').map(x=>x.trim());
+  }
+  if(dates.length === 1){
+    return '<div class="matchDetail"><h3>🏟️ Finale</h3><p><b>Score :</b> '+f.score+'</p><p><b>📅 Date :</b> '+dates[0]+'</p><p><b>🏟️ Stade :</b> '+stadiums[0]+'</p></div>';
+  }
+  let html='';
+  dates.forEach((d,i)=>{
+    const label = i===0 ? 'Match aller' : (i===1 ? 'Match retour' : 'Match '+(i+1));
+    html += '<div class="matchDetail"><h3>⚽ '+label+'</h3>' +
+      '<p><b>Score :</b> '+(legScores[i] || 'voir résultat global')+'</p>' +
+      '<p><b>📅 Date :</b> '+d+'</p>' +
+      '<p><b>🏟️ Stade :</b> '+(stadiums[i] || '—')+'</p></div>';
+  });
+  if(f.detail) html += '<div class="matchDetail"><p><b>ℹ️ Détail :</b> '+f.detail+'</p></div>';
+  return html;
+}
+
+function showFinal2(comp, season){
+ saveCurrentScroll();
+ returnScrollY = window.scrollY || window.pageYOffset || 0;
+ const f = comp==='caf' ? cafFinals[season] : (comp==='acl' ? asianFinals[season] : otherFinals[comp][season]);
+ if(!f) return;
+ lastComp = (comp==='caf' || comp==='acl') ? 'moreComps' : comp;
+ document.getElementById('compDetailTitle').textContent = "🏆 Finale " + season;
+ let details = '<h2>' + f.winner + ' 🏆</h2>' +
+   '<p><b>Adversaire :</b> ' + f.loser + '</p>' +
+   '<p><b>Résultat global :</b> ' + f.score + '</p>' +
+   '<h3>📋 Détails des matchs</h3>';
+ if(comp==='caf' || comp==='acl') details += cafMatchDetails(f);
+ else details += '<p><b>📅 Date :</b> ' + f.date + '</p><p><b>🏟️ Stade :</b> ' + f.stadium + '</p>' + (f.detail ? '<p><b>ℹ️ Détail :</b> '+f.detail+'</p>' : '');
+ document.getElementById('compDetailBox').innerHTML = details;
+ showPage('compDetail');
+}
+
+function historyBackComp(){
+ saveCurrentScroll();
+ showPage(lastComp, null, true);
+ restoreScroll(lastComp, returnScrollY);
+}
+
+function backToCompetitions(){
+ saveCurrentScroll();
+ showPage('competitions', null, true);
+ restoreScroll('competitions', competitionsScrollY);
+}
+
+function showFinal(season){
+ saveCurrentScroll();
+ returnScrollY = window.scrollY || window.pageYOffset || 0;
+ const f = finals[season];
+ if(!f) return;
+ document.getElementById('finalTitle').textContent = "🏆 Finale " + season;
+ document.getElementById('finalBox').innerHTML =
+   '<h2>' + f.winner + ' 🏆</h2>' +
+   '<p><b>Adversaire :</b> ' + f.loser + '</p>' +
+   '<p><b>Score :</b> ' + f.score + '</p>' +
+   '<p><b>Date :</b> ' + f.date + '</p>' +
+   '<p><b>Stade :</b> ' + f.stadium + '</p>' +
+   '<p>' + f.detail + '</p>';
+ showPage('finalDetail');
+}
+
+function backFromFinal(){
+ saveCurrentScroll();
+ showPage('competitions', null, true);
+ restoreScroll('competitions', returnScrollY);
+}
+
+function backFromChampionsFinal(){
+ saveCurrentScroll();
+ showPage('champions', null, true);
+ restoreScroll('champions', returnScrollY);
+}
+
+function showPage(id,btn,keepScroll=false){
+ // Toujours mémoriser la position de la page quittée.
+ const active = document.querySelector('.page.active');
+ if(active && active.id !== id) pageScrollPositions[active.id] = window.scrollY || window.pageYOffset || 0;
+ currentPageId = id;
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const target = document.getElementById(id);
+ if(!target) return;
+ target.classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn) btn.classList.add('active');
+ if(keepScroll){
+   // Le retour est restauré par la fonction appelante.
+   requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:pageScrollPositions[id] || 0,left:0,behavior:'auto'})));
+ }else{
+   // Une navigation normale commence en haut de la nouvelle page.
+   window.scrollTo({top:0,left:0,behavior:'auto'});
+ }
+}
+</script>
+</body>
+</html>
